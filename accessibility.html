@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement | ChronicSoreness</title>
+    <meta name="description" content="Our commitment to digital accessibility. Learn about the accessibility features on ChronicSoreness and how to report issues.">
+    <meta name="keywords" content="accessibility, WCAG, screen reader, chronic pain website accessibility">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Accessibility Statement | ChronicSoreness">
+    <meta property="og:description" content="Our commitment to making chronic pain resources accessible to everyone.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/accessibility.html">
+    <meta property="og:image" content="https://chronicsoreness.com/images/og-image.svg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chronicsoreness.com/accessibility.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .accessibility-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accessibility-content h2 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--color-bg-dark);
+        }
+
+        .accessibility-content h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .accessibility-content p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .accessibility-content ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .accessibility-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            background: var(--color-bg-alt);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .feature-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-bottom: 0;
+        }
+
+        .commitment-box {
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            border: 2px solid var(--color-primary-light);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .commitment-box h3 {
+            color: var(--color-primary);
+            margin-top: 0;
+        }
+
+        .contact-accessibility {
+            background: var(--color-bg-alt);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-accessibility h3 {
+            margin-top: 0;
+            color: var(--color-text);
+        }
+
+        .keyboard-shortcuts {
+            background: var(--color-bg-alt);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .keyboard-shortcuts table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .keyboard-shortcuts th,
+        .keyboard-shortcuts td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--color-bg-dark);
+        }
+
+        .keyboard-shortcuts th {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .keyboard-shortcuts td {
+            color: var(--color-text-light);
+        }
+
+        .keyboard-shortcuts kbd {
+            background: var(--color-bg-dark);
+            border: 1px solid var(--color-text-muted);
+            border-radius: 4px;
+            padding: 0.25rem 0.5rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .wcag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .last-updated {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--color-bg-dark);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav-container" aria-label="Main navigation">
+            <div class="logo">
+                <a href="index.html" aria-label="ChronicSoreness Home">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="conditions.html" role="menuitem">Conditions</a></li>
+                <li role="none"><a href="treatments.html" role="menuitem">Treatments</a></li>
+                <li role="none"><a href="lifestyle.html" role="menuitem">Lifestyle</a></li>
+                <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Accessibility Statement</h1>
+            <p>Our commitment to making chronic pain resources accessible to everyone.</p>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="content-section">
+            <div class="container">
+                <div class="accessibility-content">
+
+                    <div class="commitment-box">
+                        <h3>Our Commitment</h3>
+                        <p>ChronicSoreness is committed to ensuring digital accessibility for people with disabilities. We continually improve the user experience for everyone and apply the relevant accessibility standards.</p>
+                        <p style="margin-bottom: 0;">We believe that everyone deserves access to information about chronic pain management, regardless of ability. Living with chronic pain is challenging enough without facing barriers to finding help and support.</p>
+                    </div>
+
+                    <h2>Conformance Status</h2>
+                    <p>We strive to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards. These guidelines explain how to make web content more accessible for people with disabilities.</p>
+                    <div style="margin: 1rem 0;">
+                        <span class="wcag-badge">WCAG 2.1 Level AA Target</span>
+                    </div>
+
+                    <h2>Accessibility Features</h2>
+                    <p>We've implemented numerous accessibility features throughout our website:</p>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h4>Keyboard Navigation</h4>
+                            <p>All functionality is accessible via keyboard. Use Tab to navigate, Enter to activate, and Escape to close dialogs.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Screen Reader Support</h4>
+                            <p>Semantic HTML, ARIA labels, and proper heading structure ensure compatibility with assistive technologies.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Skip Links</h4>
+                            <p>Skip to main content links allow keyboard users to bypass repetitive navigation.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Color Contrast</h4>
+                            <p>Text maintains sufficient contrast ratios against backgrounds for readability.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Dark Mode</h4>
+                            <p>Toggle between light and dark themes based on preference or to reduce eye strain.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Responsive Design</h4>
+                            <p>Content adapts to all screen sizes and supports zoom up to 200% without loss of functionality.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Focus Indicators</h4>
+                            <p>Clear visual focus indicators help keyboard users track their position on the page.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Alt Text</h4>
+                            <p>Images include descriptive alternative text for users who cannot see them.</p>
+                        </div>
+                    </div>
+
+                    <h2>Keyboard Shortcuts</h2>
+                    <p>Navigate our site efficiently using these keyboard shortcuts:</p>
+
+                    <div class="keyboard-shortcuts">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>Shortcut</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Navigate to next interactive element</td>
+                                    <td><kbd>Tab</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Navigate to previous interactive element</td>
+                                    <td><kbd>Shift</kbd> + <kbd>Tab</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Activate link or button</td>
+                                    <td><kbd>Enter</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Close dialog or dropdown</td>
+                                    <td><kbd>Escape</kbd></td>
+                                </tr>
+                                <tr>
+                                    <td>Scroll page</td>
+                                    <td><kbd>Space</kbd> or <kbd>Arrow</kbd> keys</td>
+                                </tr>
+                                <tr>
+                                    <td>Navigate headings (screen reader)</td>
+                                    <td><kbd>H</kbd></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2>Assistive Technology Compatibility</h2>
+                    <p>Our website is designed to be compatible with:</p>
+                    <ul>
+                        <li><strong>Screen Readers:</strong> NVDA, JAWS, VoiceOver, TalkBack</li>
+                        <li><strong>Voice Control:</strong> Dragon NaturallySpeaking, Voice Control (iOS/macOS)</li>
+                        <li><strong>Screen Magnification:</strong> ZoomText, system zoom features</li>
+                        <li><strong>Alternative Input Devices:</strong> Switch controls, eye tracking</li>
+                    </ul>
+
+                    <h2>Known Limitations</h2>
+                    <p>While we strive for full accessibility, some areas are still being improved:</p>
+                    <ul>
+                        <li>Some interactive tools (like the Symptom Checker) may have complex interactions that we're working to simplify</li>
+                        <li>Third-party embedded content may not fully meet our accessibility standards</li>
+                        <li>PDF documents linked from our site may need accessibility improvements</li>
+                    </ul>
+                    <p>We are actively working to address these limitations and welcome your feedback.</p>
+
+                    <h2>Browser and Device Support</h2>
+                    <p>For the best experience, we recommend using modern browsers:</p>
+                    <ul>
+                        <li>Google Chrome (latest 2 versions)</li>
+                        <li>Mozilla Firefox (latest 2 versions)</li>
+                        <li>Apple Safari (latest 2 versions)</li>
+                        <li>Microsoft Edge (latest 2 versions)</li>
+                    </ul>
+                    <p>Our site is fully responsive and works on desktop computers, tablets, and mobile devices.</p>
+
+                    <h2>Chronic Pain & Accessibility</h2>
+                    <p>We understand that chronic pain can affect how you interact with digital content. That's why we've designed our site with features that may help:</p>
+                    <ul>
+                        <li><strong>Reading Time Estimates:</strong> Know how long content will take before committing energy</li>
+                        <li><strong>Print-Friendly Pages:</strong> Print resources to read offline during difficult days</li>
+                        <li><strong>Simple Navigation:</strong> Find what you need without excessive clicking or scrolling</li>
+                        <li><strong>Dark Mode:</strong> Reduce screen brightness during migraine-sensitive times</li>
+                        <li><strong>Large Click Targets:</strong> Buttons and links are sized for easy interaction</li>
+                    </ul>
+
+                    <div class="contact-accessibility">
+                        <h3>Report an Accessibility Issue</h3>
+                        <p>We welcome your feedback on the accessibility of ChronicSoreness. Please let us know if you encounter barriers:</p>
+                        <ul>
+                            <li><strong>Contact Form:</strong> Use our <a href="contact.html">contact page</a> and select "Accessibility Issue"</li>
+                            <li><strong>Describe the Issue:</strong> Tell us what page you were on and what barrier you encountered</li>
+                            <li><strong>Assistive Technology:</strong> Let us know what assistive technology you use, if any</li>
+                        </ul>
+                        <p>We try to respond to accessibility feedback within 5 business days.</p>
+                    </div>
+
+                    <h2>Continuous Improvement</h2>
+                    <p>We are committed to continuously improving accessibility:</p>
+                    <ul>
+                        <li>Regular accessibility audits of new and existing content</li>
+                        <li>Training for content creators on accessibility best practices</li>
+                        <li>User testing with people who use assistive technologies</li>
+                        <li>Staying current with accessibility guidelines and best practices</li>
+                    </ul>
+
+                    <p class="last-updated">This accessibility statement was last updated on January 9, 2025.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon" aria-hidden="true">&#10084;</span>
+                        ChronicSoreness
+                    </a>
+                    <p>Empowering women with chronic pain through evidence-based information and compassionate support.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="conditions.html">Conditions</a></li>
+                        <li><a href="treatments.html">Treatments</a></li>
+                        <li><a href="lifestyle.html">Lifestyle</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="symptom-checker.html">Symptom Checker</a></li>
+                        <li><a href="symptom-diary.html">Symptom Diary</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="accessibility.html">Accessibility</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChronicSoreness. For informational purposes only. Not medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

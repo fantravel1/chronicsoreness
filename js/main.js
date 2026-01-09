@@ -645,7 +645,21 @@
                 url: 'about.html',
                 description: 'Our mission, values, and commitment to the chronic pain community',
                 category: 'About',
-                keywords: ['about', 'mission', 'team', 'contact', 'privacy', 'disclaimer']
+                keywords: ['about', 'mission', 'team', 'privacy', 'disclaimer']
+            },
+            {
+                title: 'Contact Us',
+                url: 'contact.html',
+                description: 'Get in touch with ChronicSoreness. Submit questions, feedback, or share your story',
+                category: 'About',
+                keywords: ['contact', 'email', 'feedback', 'message', 'question', 'story', 'partnership']
+            },
+            {
+                title: 'Accessibility',
+                url: 'accessibility.html',
+                description: 'Our commitment to digital accessibility and WCAG compliance',
+                category: 'About',
+                keywords: ['accessibility', 'WCAG', 'screen reader', 'keyboard', 'disability', 'accessible']
             }
         ];
 
@@ -760,6 +774,8 @@
             'resources.html': { name: 'Resources', parent: null },
             'about.html': { name: 'About', parent: null },
             'faq.html': { name: 'FAQ', parent: null },
+            'contact.html': { name: 'Contact', parent: { url: 'about.html', name: 'About' } },
+            'accessibility.html': { name: 'Accessibility', parent: { url: 'about.html', name: 'About' } },
             'symptom-checker.html': { name: 'Symptom Checker', parent: { url: 'resources.html', name: 'Resources' } },
             'glossary.html': { name: 'Glossary', parent: { url: 'resources.html', name: 'Resources' } },
             'symptom-diary.html': { name: 'Symptom Diary', parent: { url: 'resources.html', name: 'Resources' } },
@@ -867,6 +883,19 @@
             'crisis-resources.html': [
                 { url: 'faq.html', title: 'FAQ', description: 'Common questions and answers', category: 'Support' },
                 { url: 'resources.html', title: 'Resources', description: 'Additional support tools', category: 'Resource' }
+            ],
+            'about.html': [
+                { url: 'contact.html', title: 'Contact Us', description: 'Get in touch with questions or feedback', category: 'About' },
+                { url: 'faq.html', title: 'FAQ', description: 'Frequently asked questions', category: 'Support' },
+                { url: 'accessibility.html', title: 'Accessibility', description: 'Our accessibility commitment', category: 'About' }
+            ],
+            'contact.html': [
+                { url: 'about.html', title: 'About Us', description: 'Learn about our mission and values', category: 'About' },
+                { url: 'faq.html', title: 'FAQ', description: 'Find answers to common questions', category: 'Support' }
+            ],
+            'accessibility.html': [
+                { url: 'about.html', title: 'About Us', description: 'Learn about our mission', category: 'About' },
+                { url: 'contact.html', title: 'Contact', description: 'Report accessibility issues', category: 'About' }
             ]
         };
 

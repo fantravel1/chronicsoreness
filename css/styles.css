@@ -2077,3 +2077,222 @@ textarea:focus {
     color: var(--color-text-light);
     line-height: 1.5;
 }
+
+/* ==========================================================================
+   Enhanced Print Styles
+   ========================================================================== */
+
+@media print {
+    /* Reset colors for printing */
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    /* Hide non-essential elements */
+    .header,
+    .footer,
+    .mobile-menu-toggle,
+    .theme-toggle,
+    .back-to-top,
+    .share-section,
+    .share-buttons,
+    .related-content,
+    .newsletter-section,
+    .skip-link,
+    .breadcrumb,
+    .search-container,
+    .header-search,
+    .nav-menu,
+    .crisis-banner,
+    .social-links,
+    .btn,
+    button:not([type="submit"]),
+    .floating-share {
+        display: none !important;
+    }
+
+    /* Page setup */
+    @page {
+        margin: 2cm;
+        size: A4;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.6;
+        font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    /* Headings */
+    h1 {
+        font-size: 24pt;
+        margin-bottom: 0.5cm;
+        page-break-after: avoid;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-top: 1cm;
+        margin-bottom: 0.5cm;
+        page-break-after: avoid;
+        border-bottom: 1pt solid #ccc;
+        padding-bottom: 0.25cm;
+    }
+
+    h3 {
+        font-size: 14pt;
+        margin-top: 0.75cm;
+        margin-bottom: 0.25cm;
+        page-break-after: avoid;
+    }
+
+    h4, h5, h6 {
+        font-size: 12pt;
+        margin-top: 0.5cm;
+        page-break-after: avoid;
+    }
+
+    /* Paragraphs and lists */
+    p {
+        margin-bottom: 0.5cm;
+        orphans: 3;
+        widows: 3;
+    }
+
+    ul, ol {
+        margin-left: 1cm;
+        margin-bottom: 0.5cm;
+    }
+
+    li {
+        margin-bottom: 0.25cm;
+    }
+
+    /* Links */
+    a {
+        text-decoration: underline;
+    }
+
+    a[href^="http"]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        font-style: italic;
+        word-break: break-all;
+    }
+
+    a[href^="/"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Images */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 0.5cm;
+    }
+
+    th, td {
+        border: 1pt solid #ccc;
+        padding: 0.25cm;
+        text-align: left;
+    }
+
+    th {
+        font-weight: bold;
+        background: #f0f0f0 !important;
+    }
+
+    /* Page breaks */
+    .content-section {
+        page-break-inside: avoid;
+    }
+
+    .page-header {
+        background: none !important;
+        padding: 0 !important;
+        margin-bottom: 1cm;
+        border-bottom: 2pt solid black;
+        padding-bottom: 0.5cm !important;
+    }
+
+    .page-header p {
+        font-style: italic;
+    }
+
+    /* Cards and boxes */
+    .card,
+    .resource-item,
+    .condition-card,
+    .treatment-card,
+    .hotline-card,
+    .faq-item,
+    .feature-card {
+        border: 1pt solid #ccc !important;
+        padding: 0.5cm !important;
+        margin-bottom: 0.5cm !important;
+        page-break-inside: avoid;
+    }
+
+    /* Symptom Diary specific */
+    .symptom-diary-page .diary-section {
+        page-break-inside: avoid;
+        border: 1pt solid #ccc;
+        padding: 0.5cm;
+        margin-bottom: 0.5cm;
+    }
+
+    /* FAQ specific */
+    .faq-answer {
+        display: block !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    /* Glossary specific */
+    .glossary-term {
+        page-break-inside: avoid;
+        margin-bottom: 0.5cm;
+    }
+
+    /* Container */
+    .container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Print header */
+    body::before {
+        content: "ChronicSoreness.com - Printed on " attr(data-print-date);
+        display: block;
+        text-align: center;
+        font-size: 10pt;
+        color: #666 !important;
+        margin-bottom: 0.5cm;
+        border-bottom: 1pt solid #ccc;
+        padding-bottom: 0.25cm;
+    }
+
+    /* Print footer */
+    body::after {
+        content: "This information is for educational purposes only. Please consult a healthcare provider for medical advice.";
+        display: block;
+        text-align: center;
+        font-size: 9pt;
+        font-style: italic;
+        color: #666 !important;
+        margin-top: 1cm;
+        padding-top: 0.25cm;
+        border-top: 1pt solid #ccc;
+    }
+}
