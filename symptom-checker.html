@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive symptom checker for women's chronic pain conditions. Identify potential conditions like fibromyalgia, endometriosis, or chronic fatigue based on your symptoms.">
+    <meta name="keywords" content="symptom checker, chronic pain quiz, fibromyalgia symptoms, endometriosis symptoms, pain assessment">
+    <meta name="author" content="ChronicSoreness.com">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/symptom-checker.html">
+    <meta property="og:title" content="Chronic Pain Symptom Checker for Women">
+    <meta property="og:description" content="Identify potential chronic pain conditions based on your symptoms with our interactive tool.">
+
+    <title>Symptom Checker | ChronicSoreness</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://chronicsoreness.com/symptom-checker.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .checker-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--color-bg-dark);
+            border-radius: var(--radius-full);
+            margin-bottom: var(--space-xl);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        [data-theme="dark"] .question-card {
+            background: var(--color-bg-alt);
+        }
+
+        .question-number {
+            font-size: var(--font-size-sm);
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+        }
+
+        .question-text {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--space-lg);
+            line-height: 1.4;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            background: var(--color-bg-alt);
+            border: 2px solid var(--color-bg-dark);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-align: left;
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+        }
+
+        .option-btn:hover {
+            border-color: var(--color-primary);
+            background: var(--gradient-soft);
+        }
+
+        .option-btn.selected {
+            border-color: var(--color-primary);
+            background: var(--gradient-soft);
+        }
+
+        .option-btn .check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-text-muted);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all var(--transition-fast);
+        }
+
+        .option-btn.selected .check {
+            background: var(--gradient-primary);
+            border-color: var(--color-primary);
+            color: white;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: space-between;
+            margin-top: var(--space-xl);
+        }
+
+        .nav-buttons .btn {
+            min-width: 120px;
+        }
+
+        .results-card {
+            background: white;
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        [data-theme="dark"] .results-card {
+            background: var(--color-bg-alt);
+        }
+
+        .result-item {
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid;
+        }
+
+        .result-item.high {
+            background: rgba(239, 68, 68, 0.1);
+            border-left-color: #ef4444;
+        }
+
+        .result-item.medium {
+            background: rgba(245, 158, 11, 0.1);
+            border-left-color: #f59e0b;
+        }
+
+        .result-item.low {
+            background: rgba(16, 185, 129, 0.1);
+            border-left-color: #10b981;
+        }
+
+        .result-condition {
+            font-weight: 600;
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-xs);
+        }
+
+        .result-match {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+            margin-bottom: var(--space-sm);
+        }
+
+        .result-description {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .start-screen, .results-screen {
+            text-align: center;
+        }
+
+        .start-screen h2 {
+            margin-bottom: var(--space-lg);
+        }
+
+        .start-screen p {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-xl);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .disclaimer-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid #f59e0b;
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            text-align: left;
+        }
+
+        .disclaimer-box h4 {
+            color: #92400e;
+            margin-bottom: var(--space-sm);
+        }
+
+        .disclaimer-box p {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-light);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" role="banner">
+        <nav class="nav-container" aria-label="Main navigation">
+            <div class="logo">
+                <a href="index.html" aria-label="ChronicSoreness Home">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="conditions.html" role="menuitem">Conditions</a></li>
+                <li role="none"><a href="treatments.html" role="menuitem">Treatments</a></li>
+                <li role="none"><a href="lifestyle.html" role="menuitem">Lifestyle</a></li>
+                <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Symptom Checker</h1>
+            <p>Answer a few questions to identify potential chronic pain conditions that match your symptoms.</p>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="checker-container">
+            <!-- Start Screen -->
+            <div id="start-screen" class="start-screen">
+                <h2>Chronic Pain Self-Assessment</h2>
+                <p>This interactive tool will ask you about your symptoms and help identify potential chronic pain conditions. It takes about 3-5 minutes to complete.</p>
+
+                <div class="disclaimer-box">
+                    <h4>Important Disclaimer</h4>
+                    <p>This tool is for educational purposes only and is NOT a diagnostic tool. It cannot replace a proper medical evaluation. Always consult with a qualified healthcare provider for diagnosis and treatment of any medical condition.</p>
+                </div>
+
+                <button id="start-btn" class="btn btn-primary">Start Assessment</button>
+            </div>
+
+            <!-- Questions Screen -->
+            <div id="questions-screen" class="hidden">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+
+                <div class="question-card" id="question-card">
+                    <div class="question-number" id="question-number">Question 1 of 12</div>
+                    <div class="question-text" id="question-text"></div>
+                    <div class="options-list" id="options-list"></div>
+                </div>
+
+                <div class="nav-buttons">
+                    <button id="prev-btn" class="btn btn-secondary" disabled>Previous</button>
+                    <button id="next-btn" class="btn btn-primary" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="results-screen hidden">
+                <h2>Your Results</h2>
+                <p style="color: var(--color-text-light); margin-bottom: var(--space-xl);">Based on your responses, here are conditions that may be worth discussing with your healthcare provider:</p>
+
+                <div class="results-card">
+                    <div id="results-list"></div>
+                </div>
+
+                <div class="disclaimer-box">
+                    <h4>Next Steps</h4>
+                    <p>These results are meant to help guide your conversation with a healthcare provider, not to diagnose. Bring this information to your next appointment and discuss your symptoms in detail. Many conditions share similar symptoms, so proper medical evaluation is essential.</p>
+                </div>
+
+                <div style="margin-top: var(--space-xl);">
+                    <button id="restart-btn" class="btn btn-secondary" style="margin-right: var(--space-md);">Take Again</button>
+                    <a href="conditions.html" class="btn btn-primary">Learn About Conditions</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                    <p>Empowering women with evidence-based information to understand and manage chronic pain conditions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Conditions</h4>
+                    <ul>
+                        <li><a href="conditions.html#fibromyalgia">Fibromyalgia</a></li>
+                        <li><a href="conditions.html#endometriosis">Endometriosis</a></li>
+                        <li><a href="conditions.html#chronic-fatigue">Chronic Fatigue</a></li>
+                        <li><a href="conditions.html#pelvic-pain">Pelvic Pain</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="treatments.html">Treatment Options</a></li>
+                        <li><a href="lifestyle.html">Lifestyle Guide</a></li>
+                        <li><a href="resources.html">Tools & Downloads</a></li>
+                        <li><a href="resources.html#find-doctor">Find a Specialist</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="about.html#medical-review">Medical Review</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="disclaimer"><strong>Medical Disclaimer:</strong> This website provides general information for educational purposes only. It is not intended as medical advice and should not replace consultation with qualified healthcare providers.</p>
+                <p class="copyright">&copy; 2025 ChronicSoreness. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // Questions data
+        const questions = [
+            {
+                id: 'pain_duration',
+                text: 'How long have you been experiencing pain or discomfort?',
+                options: [
+                    { value: 'less_3months', label: 'Less than 3 months' },
+                    { value: '3_6months', label: '3-6 months' },
+                    { value: '6_12months', label: '6-12 months' },
+                    { value: 'more_1year', label: 'More than 1 year' }
+                ]
+            },
+            {
+                id: 'pain_location',
+                text: 'Where do you primarily experience pain?',
+                options: [
+                    { value: 'widespread', label: 'Widespread (multiple areas of the body)' },
+                    { value: 'pelvic', label: 'Pelvic/abdominal area' },
+                    { value: 'joints', label: 'Joints (hands, knees, etc.)' },
+                    { value: 'head', label: 'Head/neck area' },
+                    { value: 'back', label: 'Back/spine' }
+                ]
+            },
+            {
+                id: 'fatigue',
+                text: 'How would you describe your fatigue levels?',
+                options: [
+                    { value: 'none', label: 'I rarely feel fatigued' },
+                    { value: 'mild', label: 'Mild fatigue that doesn\'t affect daily activities' },
+                    { value: 'moderate', label: 'Moderate fatigue that sometimes limits activities' },
+                    { value: 'severe', label: 'Severe fatigue even after rest, significantly limits activities' }
+                ]
+            },
+            {
+                id: 'sleep',
+                text: 'How is your sleep quality?',
+                options: [
+                    { value: 'good', label: 'I sleep well and wake refreshed' },
+                    { value: 'difficulty_falling', label: 'Difficulty falling asleep' },
+                    { value: 'wake_frequently', label: 'Wake frequently during the night' },
+                    { value: 'unrefreshing', label: 'Sleep but never feel rested' }
+                ]
+            },
+            {
+                id: 'cognitive',
+                text: 'Do you experience cognitive difficulties (memory, concentration, "brain fog")?',
+                options: [
+                    { value: 'none', label: 'No cognitive issues' },
+                    { value: 'occasional', label: 'Occasionally, not concerning' },
+                    { value: 'frequent', label: 'Frequently, affecting work/daily life' },
+                    { value: 'severe', label: 'Severe, significant impact on functioning' }
+                ]
+            },
+            {
+                id: 'menstrual',
+                text: 'Do your symptoms worsen around your menstrual period?',
+                options: [
+                    { value: 'not_applicable', label: 'Not applicable (post-menopausal or other)' },
+                    { value: 'no', label: 'No noticeable pattern' },
+                    { value: 'somewhat', label: 'Somewhat worse during periods' },
+                    { value: 'much_worse', label: 'Significantly worse during periods' }
+                ]
+            },
+            {
+                id: 'pelvic_symptoms',
+                text: 'Do you experience any of the following pelvic symptoms?',
+                options: [
+                    { value: 'none', label: 'None of these' },
+                    { value: 'painful_periods', label: 'Very painful periods (beyond normal cramping)' },
+                    { value: 'pain_intercourse', label: 'Pain during or after intercourse' },
+                    { value: 'bladder_bowel', label: 'Pain with bowel movements or urination' }
+                ]
+            },
+            {
+                id: 'morning_stiffness',
+                text: 'Do you experience morning stiffness?',
+                options: [
+                    { value: 'none', label: 'No morning stiffness' },
+                    { value: 'brief', label: 'Brief stiffness (less than 30 minutes)' },
+                    { value: 'moderate', label: 'Moderate stiffness (30-60 minutes)' },
+                    { value: 'prolonged', label: 'Prolonged stiffness (more than 1 hour)' }
+                ]
+            },
+            {
+                id: 'exertion',
+                text: 'How does physical or mental exertion affect your symptoms?',
+                options: [
+                    { value: 'no_effect', label: 'No significant effect' },
+                    { value: 'temporary', label: 'Temporary worsening during activity' },
+                    { value: 'delayed', label: 'Symptoms worsen 12-48 hours after exertion' },
+                    { value: 'prolonged', label: 'Significant worsening lasting days after exertion' }
+                ]
+            },
+            {
+                id: 'headaches',
+                text: 'Do you experience recurring headaches?',
+                options: [
+                    { value: 'rarely', label: 'Rarely or never' },
+                    { value: 'tension', label: 'Tension-type headaches occasionally' },
+                    { value: 'frequent', label: 'Frequent headaches (several times a week)' },
+                    { value: 'migraines', label: 'Severe migraines with sensitivity to light/sound' }
+                ]
+            },
+            {
+                id: 'sensitivity',
+                text: 'Do you have heightened sensitivity to any of the following?',
+                options: [
+                    { value: 'none', label: 'No unusual sensitivities' },
+                    { value: 'touch', label: 'Touch/pressure (even light touch can hurt)' },
+                    { value: 'environmental', label: 'Light, sounds, or smells' },
+                    { value: 'temperature', label: 'Temperature changes (heat or cold)' }
+                ]
+            },
+            {
+                id: 'other_symptoms',
+                text: 'Do you experience any of these additional symptoms?',
+                options: [
+                    { value: 'none', label: 'None of these' },
+                    { value: 'digestive', label: 'Digestive issues (IBS-like symptoms)' },
+                    { value: 'skin_rashes', label: 'Skin rashes or sensitivity to sunlight' },
+                    { value: 'joint_swelling', label: 'Joint swelling or visible inflammation' }
+                ]
+            }
+        ];
+
+        // Condition scoring rules
+        const conditions = {
+            fibromyalgia: {
+                name: 'Fibromyalgia',
+                link: 'conditions.html#fibromyalgia',
+                description: 'Characterized by widespread musculoskeletal pain, fatigue, and cognitive difficulties.',
+                scoring: {
+                    pain_duration: { 'more_1year': 3, '6_12months': 2, '3_6months': 1 },
+                    pain_location: { 'widespread': 4 },
+                    fatigue: { 'severe': 3, 'moderate': 2 },
+                    sleep: { 'unrefreshing': 3, 'wake_frequently': 2 },
+                    cognitive: { 'severe': 3, 'frequent': 2 },
+                    sensitivity: { 'touch': 3, 'environmental': 2, 'temperature': 2 }
+                },
+                maxScore: 19
+            },
+            endometriosis: {
+                name: 'Endometriosis',
+                link: 'conditions.html#endometriosis',
+                description: 'Tissue similar to uterine lining grows outside the uterus, causing pelvic pain.',
+                scoring: {
+                    pain_location: { 'pelvic': 4 },
+                    menstrual: { 'much_worse': 4, 'somewhat': 2 },
+                    pelvic_symptoms: { 'painful_periods': 4, 'pain_intercourse': 3, 'bladder_bowel': 3 },
+                    pain_duration: { 'more_1year': 2, '6_12months': 1 }
+                },
+                maxScore: 17
+            },
+            cfs: {
+                name: 'Chronic Fatigue Syndrome (ME/CFS)',
+                link: 'conditions.html#chronic-fatigue',
+                description: 'Profound fatigue not improved by rest, with post-exertional malaise.',
+                scoring: {
+                    fatigue: { 'severe': 4, 'moderate': 2 },
+                    sleep: { 'unrefreshing': 4 },
+                    cognitive: { 'severe': 3, 'frequent': 2 },
+                    exertion: { 'prolonged': 4, 'delayed': 3 },
+                    pain_duration: { 'more_1year': 2, '6_12months': 1 }
+                },
+                maxScore: 18
+            },
+            autoimmune: {
+                name: 'Autoimmune Condition',
+                link: 'conditions.html#autoimmune',
+                description: 'Conditions like lupus or rheumatoid arthritis where the immune system attacks healthy tissue.',
+                scoring: {
+                    pain_location: { 'joints': 3 },
+                    morning_stiffness: { 'prolonged': 4, 'moderate': 2 },
+                    fatigue: { 'severe': 2, 'moderate': 1 },
+                    other_symptoms: { 'joint_swelling': 4, 'skin_rashes': 3 },
+                    pain_duration: { 'more_1year': 2 }
+                },
+                maxScore: 16
+            },
+            migraines: {
+                name: 'Chronic Migraines',
+                link: 'conditions.html#migraines',
+                description: 'Recurring severe headaches with sensory disturbances.',
+                scoring: {
+                    pain_location: { 'head': 3 },
+                    headaches: { 'migraines': 5, 'frequent': 3 },
+                    menstrual: { 'much_worse': 2, 'somewhat': 1 },
+                    sensitivity: { 'environmental': 3 }
+                },
+                maxScore: 13
+            },
+            pelvic_pain: {
+                name: 'Chronic Pelvic Pain',
+                link: 'conditions.html#pelvic-pain',
+                description: 'Persistent pain in the lower abdomen with various possible causes.',
+                scoring: {
+                    pain_location: { 'pelvic': 4 },
+                    pain_duration: { 'more_1year': 3, '6_12months': 2 },
+                    pelvic_symptoms: { 'painful_periods': 2, 'pain_intercourse': 3, 'bladder_bowel': 3 },
+                    other_symptoms: { 'digestive': 2 }
+                },
+                maxScore: 15
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = {};
+
+        // DOM elements
+        const startScreen = document.getElementById('start-screen');
+        const questionsScreen = document.getElementById('questions-screen');
+        const resultsScreen = document.getElementById('results-screen');
+        const startBtn = document.getElementById('start-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionNumber = document.getElementById('question-number');
+        const questionText = document.getElementById('question-text');
+        const optionsList = document.getElementById('options-list');
+        const progressFill = document.getElementById('progress-fill');
+        const resultsList = document.getElementById('results-list');
+
+        // Start assessment
+        startBtn.addEventListener('click', function() {
+            startScreen.classList.add('hidden');
+            questionsScreen.classList.remove('hidden');
+            showQuestion(0);
+        });
+
+        // Previous button
+        prevBtn.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Next button
+        nextBtn.addEventListener('click', function() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                showResults();
+            }
+        });
+
+        // Restart
+        restartBtn.addEventListener('click', function() {
+            currentQuestion = 0;
+            answers = {};
+            resultsScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        });
+
+        function showQuestion(index) {
+            const question = questions[index];
+
+            questionNumber.textContent = `Question ${index + 1} of ${questions.length}`;
+            questionText.textContent = question.text;
+            progressFill.style.width = ((index + 1) / questions.length * 100) + '%';
+
+            // Update buttons
+            prevBtn.disabled = index === 0;
+            nextBtn.textContent = index === questions.length - 1 ? 'See Results' : 'Next';
+            nextBtn.disabled = !answers[question.id];
+
+            // Render options
+            optionsList.innerHTML = '';
+            question.options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn' + (answers[question.id] === option.value ? ' selected' : '');
+                btn.innerHTML = `
+                    <span class="check">${answers[question.id] === option.value ? '&#10003;' : ''}</span>
+                    <span>${option.label}</span>
+                `;
+                btn.addEventListener('click', function() {
+                    answers[question.id] = option.value;
+                    showQuestion(index); // Refresh to show selection
+                });
+                optionsList.appendChild(btn);
+            });
+        }
+
+        function calculateScores() {
+            const scores = {};
+
+            for (const [conditionId, condition] of Object.entries(conditions)) {
+                let score = 0;
+
+                for (const [questionId, values] of Object.entries(condition.scoring)) {
+                    const answer = answers[questionId];
+                    if (answer && values[answer]) {
+                        score += values[answer];
+                    }
+                }
+
+                scores[conditionId] = {
+                    ...condition,
+                    score: score,
+                    percentage: Math.round((score / condition.maxScore) * 100)
+                };
+            }
+
+            return scores;
+        }
+
+        function showResults() {
+            questionsScreen.classList.add('hidden');
+            resultsScreen.classList.remove('hidden');
+
+            const scores = calculateScores();
+
+            // Sort by percentage
+            const sorted = Object.values(scores).sort((a, b) => b.percentage - a.percentage);
+
+            resultsList.innerHTML = '';
+
+            sorted.forEach(result => {
+                if (result.percentage < 15) return; // Don't show very low matches
+
+                let level = 'low';
+                let levelText = 'Low match';
+
+                if (result.percentage >= 60) {
+                    level = 'high';
+                    levelText = 'Strong match';
+                } else if (result.percentage >= 35) {
+                    level = 'medium';
+                    levelText = 'Moderate match';
+                }
+
+                const item = document.createElement('div');
+                item.className = `result-item ${level}`;
+                item.innerHTML = `
+                    <div class="result-condition">${result.name}</div>
+                    <div class="result-match">${levelText} (${result.percentage}% symptom alignment)</div>
+                    <div class="result-description">${result.description}</div>
+                    <a href="${result.link}" style="font-size: var(--font-size-sm); margin-top: var(--space-sm); display: inline-block;">Learn more &rarr;</a>
+                `;
+                resultsList.appendChild(item);
+            });
+
+            if (resultsList.children.length === 0) {
+                resultsList.innerHTML = `
+                    <p style="text-align: center; color: var(--color-text-light);">
+                        Based on your responses, none of the conditions showed a significant match.
+                        This could mean your symptoms don't fit typical patterns, or you may be experiencing
+                        something different. We recommend discussing your symptoms with a healthcare provider.
+                    </p>
+                `;
+            }
+        }
+    })();
+    </script>
+</body>
+</html>
