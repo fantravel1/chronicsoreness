@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently asked questions about chronic pain in women. Get answers about fibromyalgia, endometriosis, treatment options, and managing daily life with chronic conditions.">
+    <meta name="keywords" content="chronic pain FAQ, fibromyalgia questions, endometriosis FAQ, pain management questions, chronic illness FAQ">
+    <meta name="author" content="ChronicSoreness.com">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/faq.html">
+    <meta property="og:title" content="Chronic Pain FAQ - Your Questions Answered">
+    <meta property="og:description" content="Get answers to common questions about chronic pain conditions affecting women.">
+
+    <title>Frequently Asked Questions | ChronicSoreness</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://chronicsoreness.com/faq.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- FAQ Schema for Rich Results -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Is chronic pain real or is it in my head?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Chronic pain is absolutely real. While the brain plays a role in processing all pain signals, this doesn't mean the pain is imaginary. Conditions like fibromyalgia involve changes in how the nervous system processes pain signals, making them hypersensitive. Neuroimaging studies show measurable differences in brain activity in people with chronic pain."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why does it take so long to get diagnosed with conditions like endometriosis?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The average time to diagnosis for endometriosis is 7-10 years. This delay happens because symptoms overlap with other conditions, periods pain is often normalized, there's no simple blood test for diagnosis, and definitive diagnosis requires surgery (laparoscopy). Women's pain has historically been dismissed or understudied."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can chronic pain be cured?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While many chronic pain conditions cannot be fully cured, they can often be effectively managed. Treatment focuses on reducing pain intensity, improving function, and enhancing quality of life. Many people achieve significant improvement with the right combination of treatments including medication, physical therapy, lifestyle changes, and psychological support."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Should I exercise if I have chronic pain?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, appropriate exercise is one of the most effective treatments for chronic pain. The key is starting slowly with gentle activities and gradually increasing. Exercise releases endorphins, reduces inflammation, improves sleep, and prevents deconditioning. Work with a physical therapist to find safe activities for your condition."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            justify-content: center;
+            margin-bottom: var(--space-2xl);
+            padding: var(--space-md);
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-lg);
+        }
+
+        .faq-category-btn {
+            padding: var(--space-sm) var(--space-md);
+            border: 2px solid var(--color-bg-dark);
+            background: white;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            font-family: var(--font-primary);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            color: var(--color-text);
+        }
+
+        [data-theme="dark"] .faq-category-btn {
+            background: var(--color-bg-dark);
+            border-color: var(--color-bg-dark);
+        }
+
+        .faq-category-btn:hover,
+        .faq-category-btn.active {
+            background: var(--gradient-primary);
+            border-color: var(--color-primary);
+            color: white;
+        }
+
+        .faq-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .faq-section-title {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-sm);
+            border-bottom: 2px solid var(--color-primary-light);
+        }
+
+        .faq-item {
+            margin-bottom: var(--space-md);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: var(--space-lg);
+            background: var(--color-bg-alt);
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-md);
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            color: var(--color-text);
+            transition: background var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background: var(--gradient-soft);
+        }
+
+        .faq-question[aria-expanded="true"] {
+            background: var(--gradient-soft);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-xl);
+            font-weight: 300;
+            color: var(--color-primary);
+            transition: transform var(--transition-fast);
+            flex-shrink: 0;
+        }
+
+        .faq-question[aria-expanded="true"] .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 var(--space-lg) var(--space-lg);
+            display: none;
+        }
+
+        .faq-answer.open {
+            display: block;
+        }
+
+        .faq-answer p {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul {
+            margin: var(--space-md) 0;
+            padding-left: var(--space-lg);
+        }
+
+        .faq-answer li {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-sm);
+            position: relative;
+            padding-left: var(--space-md);
+        }
+
+        .faq-answer li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .faq-answer a {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+
+        .still-have-questions {
+            background: var(--gradient-soft);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            margin-top: var(--space-2xl);
+        }
+
+        .still-have-questions h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .still-have-questions p {
+            color: var(--color-text-light);
+            margin-bottom: var(--space-lg);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" role="banner">
+        <nav class="nav-container" aria-label="Main navigation">
+            <div class="logo">
+                <a href="index.html" aria-label="ChronicSoreness Home">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="conditions.html" role="menuitem">Conditions</a></li>
+                <li role="none"><a href="treatments.html" role="menuitem">Treatments</a></li>
+                <li role="none"><a href="lifestyle.html" role="menuitem">Lifestyle</a></li>
+                <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+            <p>Get answers to common questions about chronic pain conditions, treatments, and daily management.</p>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="container faq-container" style="padding-top: var(--space-xl);">
+
+            <!-- Category Filters -->
+            <div class="faq-categories" role="tablist" aria-label="FAQ categories">
+                <button class="faq-category-btn active" data-category="all">All Questions</button>
+                <button class="faq-category-btn" data-category="general">General</button>
+                <button class="faq-category-btn" data-category="diagnosis">Diagnosis</button>
+                <button class="faq-category-btn" data-category="treatment">Treatment</button>
+                <button class="faq-category-btn" data-category="lifestyle">Lifestyle</button>
+                <button class="faq-category-btn" data-category="support">Support</button>
+            </div>
+
+            <!-- General Questions -->
+            <section class="faq-section" data-category="general">
+                <h2 class="faq-section-title">General Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is chronic pain real or is it "all in my head"?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Chronic pain is absolutely real.</strong> While the brain plays a role in processing all pain signals, this doesn't mean the pain is imaginary or that you're making it up.</p>
+                        <p>Conditions like fibromyalgia involve changes in how the central nervous system processes pain signals, making it hypersensitive. Neuroimaging studies show measurable differences in brain activity in people with chronic pain compared to those without.</p>
+                        <p>The outdated idea that pain without visible injury isn't real has caused tremendous harm to chronic pain patients. Modern pain science recognizes that pain is a complex experience involving biological, psychological, and social factors&mdash;all of which are real.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Why do women experience more chronic pain than men?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Women experience chronic pain more frequently due to several biological and social factors:</p>
+                        <ul>
+                            <li><strong>Hormonal influences:</strong> Estrogen and progesterone directly affect pain perception, and hormonal fluctuations impact many pain conditions</li>
+                            <li><strong>Nervous system differences:</strong> Women have more nerve receptors and different pain processing pathways</li>
+                            <li><strong>Immune system variations:</strong> Women's stronger immune responses make them more susceptible to autoimmune conditions</li>
+                            <li><strong>Anatomical factors:</strong> Conditions like endometriosis are specific to female anatomy</li>
+                            <li><strong>Historical medical bias:</strong> Women's pain has been historically dismissed or understudied</li>
+                        </ul>
+                        <p><a href="conditions.html#pain-gender-gap">Learn more about the pain gender gap &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What's the difference between acute and chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Acute pain</strong> is short-term pain that serves as a warning signal. It has a clear cause (injury, surgery, infection), typically lasts less than 3-6 months, and resolves when the underlying cause heals.</p>
+                        <p><strong>Chronic pain</strong> persists for more than 3-6 months, often continuing after the original injury has healed. It may or may not have an identifiable cause and involves changes in the nervous system. Chronic pain requires different treatment approaches focused on management rather than cure.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Diagnosis Questions -->
+            <section class="faq-section" data-category="diagnosis">
+                <h2 class="faq-section-title">Diagnosis Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Why does it take so long to get diagnosed?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The average time to diagnosis for conditions like endometriosis is 7-10 years. This frustrating delay happens for several reasons:</p>
+                        <ul>
+                            <li>Symptoms overlap with many other conditions</li>
+                            <li>Period pain and fatigue are often normalized ("that's just how it is")</li>
+                            <li>There's no simple blood test for many chronic pain conditions</li>
+                            <li>Some conditions require invasive procedures (like laparoscopy) for definitive diagnosis</li>
+                            <li>Historically, women's pain has been dismissed or attributed to psychological causes</li>
+                            <li>Many healthcare providers lack training in chronic pain conditions</li>
+                        </ul>
+                        <p>If you feel your symptoms are being dismissed, seek a second opinion or ask for a referral to a specialist.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is there a test for fibromyalgia?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>There's no single blood test or imaging study that diagnoses fibromyalgia. Diagnosis is clinical, based on:</p>
+                        <ul>
+                            <li>Widespread pain lasting more than 3 months</li>
+                            <li>Pain occurring on both sides of the body and above/below the waist</li>
+                            <li>Presence of other symptoms (fatigue, cognitive issues, sleep problems)</li>
+                            <li>Ruling out other conditions through tests</li>
+                        </ul>
+                        <p>Your doctor may use questionnaires like the Widespread Pain Index (WPI) and Symptom Severity Scale (SSS) to help with diagnosis.</p>
+                        <p><a href="conditions.html#fibromyalgia">Learn more about fibromyalgia diagnosis &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can you have multiple chronic pain conditions?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Yes, it's actually common.</strong> Many chronic pain conditions occur together (called comorbidity). For example:</p>
+                        <ul>
+                            <li>Fibromyalgia often occurs with migraines, IBS, and chronic fatigue</li>
+                            <li>Endometriosis frequently coexists with interstitial cystitis and pelvic floor dysfunction</li>
+                            <li>Autoimmune conditions often overlap (having one increases risk of others)</li>
+                        </ul>
+                        <p>This overlap may be because these conditions share underlying mechanisms, like central sensitization or immune dysfunction. Having multiple conditions can complicate diagnosis and treatment, so working with providers experienced in chronic pain is important.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Treatment Questions -->
+            <section class="faq-section" data-category="treatment">
+                <h2 class="faq-section-title">Treatment Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can chronic pain be cured?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>While many chronic pain conditions <strong>cannot be fully cured</strong>, they can often be effectively managed. The goal of treatment is to:</p>
+                        <ul>
+                            <li>Reduce pain intensity</li>
+                            <li>Improve physical function</li>
+                            <li>Enhance quality of life</li>
+                            <li>Minimize flares</li>
+                        </ul>
+                        <p>Many people achieve significant improvement with the right combination of treatments. A multimodal approach (combining medication, physical therapy, lifestyle changes, and psychological support) tends to work better than any single treatment alone.</p>
+                        <p><a href="treatments.html">Explore treatment options &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Are opioids appropriate for chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Opioids are generally <strong>not recommended as first-line treatment</strong> for chronic non-cancer pain due to:</p>
+                        <ul>
+                            <li>Limited evidence of long-term effectiveness</li>
+                            <li>Risk of tolerance (needing higher doses over time)</li>
+                            <li>Risk of dependence and addiction</li>
+                            <li>Side effects that can worsen quality of life</li>
+                            <li>Potential to increase pain sensitivity over time (opioid-induced hyperalgesia)</li>
+                        </ul>
+                        <p>In some specific situations, opioids may be considered under careful supervision when other treatments have failed. Many other medications (antidepressants, anti-seizure drugs, topical treatments) are more effective for chronic pain with fewer risks.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Does cognitive behavioral therapy (CBT) mean my pain is psychological?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>No.</strong> CBT is recommended because the brain plays a role in all pain&mdash;not because your pain isn't real.</p>
+                        <p>CBT for chronic pain helps you:</p>
+                        <ul>
+                            <li>Identify thought patterns that amplify pain and suffering</li>
+                            <li>Develop coping strategies for pain flares</li>
+                            <li>Reduce fear-avoidance behaviors that lead to deconditioning</li>
+                            <li>Address anxiety and depression that worsen pain perception</li>
+                            <li>Improve function and quality of life</li>
+                        </ul>
+                        <p>Neuroimaging studies show that psychological treatments create measurable changes in brain areas involved in pain processing. This is mainstream medicine, not alternative treatment.</p>
+                        <p><a href="treatments.html#mind-body">Learn about mind-body approaches &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How long does it take for treatments to work?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>This varies by treatment type:</p>
+                        <ul>
+                            <li><strong>Pain medications:</strong> Hours to days for acute relief</li>
+                            <li><strong>Antidepressants for pain:</strong> 2-6 weeks for full effect</li>
+                            <li><strong>Physical therapy:</strong> Several weeks to months of consistent practice</li>
+                            <li><strong>Mind-body approaches:</strong> 8+ weeks for significant benefit</li>
+                            <li><strong>Lifestyle changes:</strong> Weeks to months of consistent implementation</li>
+                        </ul>
+                        <p>Be patient&mdash;chronic pain developed over time and improvement also takes time. Keep tracking your symptoms and communicate with your healthcare team about what's working.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lifestyle Questions -->
+            <section class="faq-section" data-category="lifestyle">
+                <h2 class="faq-section-title">Lifestyle Questions</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Should I exercise if I have chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Yes, appropriate exercise is one of the most effective treatments for chronic pain.</strong> The key is starting slowly and finding activities that work for your body.</p>
+                        <p>Benefits of exercise for chronic pain:</p>
+                        <ul>
+                            <li>Releases endorphins (natural painkillers)</li>
+                            <li>Reduces inflammation</li>
+                            <li>Improves sleep quality</li>
+                            <li>Maintains muscle strength and flexibility</li>
+                            <li>Reduces anxiety and depression</li>
+                            <li>Prevents deconditioning that worsens pain</li>
+                        </ul>
+                        <p>Start with gentle activities like walking, swimming, or gentle yoga. The goal is consistency over intensity.</p>
+                        <p><strong>Exception:</strong> If you have ME/CFS, standard exercise advice may not apply due to post-exertional malaise. Work with a provider who understands this condition.</p>
+                        <p><a href="lifestyle.html">Read our exercise guidelines &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What is pacing and why is it important?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Pacing is a self-management strategy of balancing activity and rest to avoid symptom flares. It helps break the <strong>boom-bust cycle</strong> where you:</p>
+                        <ol>
+                            <li>Feel good and overdo activities</li>
+                            <li>Crash with a flare and need days to recover</li>
+                            <li>Feel better and repeat the cycle</li>
+                        </ol>
+                        <p>Key pacing principles:</p>
+                        <ul>
+                            <li>Know your baseline (what you can do without triggering flares)</li>
+                            <li>Plan activities and rest breaks in advance</li>
+                            <li>Rest before you're exhausted</li>
+                            <li>Increase activity gradually (10-20% at a time)</li>
+                        </ul>
+                        <p><a href="lifestyle.html">Learn more about pacing &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Can diet help with chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>While no diet cures chronic pain, what you eat can influence inflammation and how you feel:</p>
+                        <ul>
+                            <li><strong>Anti-inflammatory foods:</strong> Fruits, vegetables, fatty fish, nuts, olive oil may help reduce inflammation</li>
+                            <li><strong>Trigger foods:</strong> Some people find certain foods worsen symptoms (gluten, dairy, nightshades, alcohol)</li>
+                            <li><strong>Hydration:</strong> Dehydration can worsen pain and fatigue</li>
+                            <li><strong>Supplements:</strong> Vitamin D, magnesium, and omega-3s may help some conditions</li>
+                        </ul>
+                        <p>Consider working with a dietitian on an elimination diet if you suspect food triggers. The Mediterranean diet has the most research support for reducing inflammation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Questions -->
+            <section class="faq-section" data-category="support">
+                <h2 class="faq-section-title">Support & Resources</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How do I find a doctor who takes chronic pain seriously?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Finding the right provider can make a huge difference. Look for:</p>
+                        <ul>
+                            <li><strong>Pain management specialists:</strong> Doctors who specialize in chronic pain treatment</li>
+                            <li><strong>Condition-specific specialists:</strong> Rheumatologists for fibromyalgia/autoimmune, gynecologists for endometriosis</li>
+                            <li><strong>Recommendations:</strong> Ask in patient support groups for provider recommendations</li>
+                        </ul>
+                        <p>Red flags to watch for:</p>
+                        <ul>
+                            <li>Dismissing your symptoms without thorough evaluation</li>
+                            <li>Attributing everything to stress or mental health without considering physical causes</li>
+                            <li>Refusing to try different approaches when treatments don't work</li>
+                        </ul>
+                        <p><a href="resources.html#find-doctor">Tips for finding a specialist &rarr;</a></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How do I explain my condition to family and friends?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Explaining invisible illness can be challenging. Some tips:</p>
+                        <ul>
+                            <li><strong>Use analogies:</strong> "Imagine having the flu every day" or explain the spoon theory</li>
+                            <li><strong>Share resources:</strong> Give them articles or videos about your condition</li>
+                            <li><strong>Be specific:</strong> Instead of "I'm tired," say "My fatigue makes it hard to concentrate and I need to rest after small activities"</li>
+                            <li><strong>Set boundaries:</strong> It's okay to say "I don't have the energy to explain today"</li>
+                            <li><strong>Invite them to appointments:</strong> Hearing from a doctor can help some people understand</li>
+                        </ul>
+                        <p>Remember: You don't owe anyone an explanation, but clear communication with close people can improve support.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Is it normal to feel depressed or anxious with chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><strong>Yes, this is extremely common</strong>&mdash;and it doesn't mean your pain is "just" depression.</p>
+                        <p>Chronic pain and mental health are deeply connected:</p>
+                        <ul>
+                            <li>Living with constant pain is inherently stressful and exhausting</li>
+                            <li>Pain and mood share some of the same brain pathways</li>
+                            <li>Sleep disruption worsens both pain and mood</li>
+                            <li>Social isolation from reduced activities affects mental health</li>
+                            <li>Depression can lower pain thresholds, creating a cycle</li>
+                        </ul>
+                        <p>Treating depression and anxiety can improve pain outcomes, and treating pain can improve mental health. Don't hesitate to seek support from a therapist, especially one experienced with chronic illness.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Where can I find support from others with chronic pain?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Connecting with others who understand can reduce isolation:</p>
+                        <ul>
+                            <li><strong>Online communities:</strong> Reddit (r/ChronicPain, r/Fibromyalgia), Facebook groups, condition-specific forums</li>
+                            <li><strong>National organizations:</strong> American Chronic Pain Association, National Fibromyalgia Association, Endometriosis Foundation</li>
+                            <li><strong>Local support groups:</strong> Ask your healthcare provider or search online for local meetups</li>
+                            <li><strong>Therapy groups:</strong> Some therapists run groups specifically for chronic illness</li>
+                        </ul>
+                        <p>When participating in communities, look for balanced groups that offer support without promoting unproven treatments.</p>
+                        <p><a href="resources.html#communities">Find support communities &rarr;</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Still Have Questions -->
+            <div class="still-have-questions">
+                <h2>Still Have Questions?</h2>
+                <p>Explore our comprehensive guides for in-depth information about specific conditions and treatments.</p>
+                <div class="cta-buttons">
+                    <a href="conditions.html" class="btn btn-primary">Explore Conditions</a>
+                    <a href="symptom-checker.html" class="btn btn-secondary">Take Symptom Quiz</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                    <p>Empowering women with evidence-based information to understand and manage chronic pain conditions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Conditions</h4>
+                    <ul>
+                        <li><a href="conditions.html#fibromyalgia">Fibromyalgia</a></li>
+                        <li><a href="conditions.html#endometriosis">Endometriosis</a></li>
+                        <li><a href="conditions.html#chronic-fatigue">Chronic Fatigue</a></li>
+                        <li><a href="conditions.html#pelvic-pain">Pelvic Pain</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="treatments.html">Treatment Options</a></li>
+                        <li><a href="lifestyle.html">Lifestyle Guide</a></li>
+                        <li><a href="resources.html">Tools & Downloads</a></li>
+                        <li><a href="glossary.html">Medical Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="disclaimer"><strong>Medical Disclaimer:</strong> This website provides general information for educational purposes only. It is not intended as medical advice and should not replace consultation with qualified healthcare providers.</p>
+                <p class="copyright">&copy; 2025 ChronicSoreness. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                // Close all other answers
+                faqQuestions.forEach(q => {
+                    if (q !== this) {
+                        q.setAttribute('aria-expanded', 'false');
+                        q.nextElementSibling.classList.remove('open');
+                    }
+                });
+
+                // Toggle current
+                this.setAttribute('aria-expanded', !isExpanded);
+                answer.classList.toggle('open');
+            });
+        });
+
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.faq-category-btn');
+        const faqSections = document.querySelectorAll('.faq-section');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show/hide sections
+                faqSections.forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.style.display = '';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
