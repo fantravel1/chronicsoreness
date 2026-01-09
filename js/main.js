@@ -214,33 +214,211 @@
     }
 
     /**
-     * Copy to clipboard for sharing
+     * Social Sharing Buttons
      */
     function initShareButtons() {
-        document.querySelectorAll('.share-btn').forEach(btn => {
-            btn.addEventListener('click', async function() {
-                const url = this.dataset.url || window.location.href;
-                const title = this.dataset.title || document.title;
+        const pageUrl = encodeURIComponent(window.location.href);
+        const pageTitle = encodeURIComponent(document.title);
+        const pageDescription = encodeURIComponent(
+            document.querySelector('meta[name="description"]')?.content || ''
+        );
 
-                if (navigator.share) {
-                    try {
-                        await navigator.share({ title, url });
-                    } catch (err) {
-                        console.log('Share cancelled');
-                    }
-                } else if (navigator.clipboard) {
-                    try {
-                        await navigator.clipboard.writeText(url);
-                        this.textContent = 'Copied!';
-                        setTimeout(() => {
-                            this.textContent = 'Share';
-                        }, 2000);
-                    } catch (err) {
-                        console.error('Failed to copy');
-                    }
+        // Handle social share clicks
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', async function(e) {
+                const type = this.dataset.share;
+                const url = this.dataset.url ? encodeURIComponent(this.dataset.url) : pageUrl;
+                const title = this.dataset.title ? encodeURIComponent(this.dataset.title) : pageTitle;
+
+                let shareUrl;
+                switch (type) {
+                    case 'facebook':
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                        break;
+                    case 'twitter':
+                        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+                        break;
+                    case 'linkedin':
+                        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}`;
+                        break;
+                    case 'pinterest':
+                        shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${title}`;
+                        break;
+                    case 'email':
+                        shareUrl = `mailto:?subject=${title}&body=I thought you might find this helpful: ${url}`;
+                        window.location.href = shareUrl;
+                        return;
+                    case 'copy':
+                        e.preventDefault();
+                        try {
+                            await navigator.clipboard.writeText(decodeURIComponent(url));
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<span aria-hidden="true">&#10003;</span> Copied!';
+                            this.classList.add('copied');
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('copied');
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Failed to copy:', err);
+                        }
+                        return;
+                    case 'native':
+                        e.preventDefault();
+                        if (navigator.share) {
+                            try {
+                                await navigator.share({
+                                    title: decodeURIComponent(title),
+                                    url: decodeURIComponent(url)
+                                });
+                            } catch (err) {
+                                console.log('Share cancelled');
+                            }
+                        }
+                        return;
+                    default:
+                        return;
+                }
+
+                if (shareUrl) {
+                    e.preventDefault();
+                    window.open(shareUrl, 'share', 'width=600,height=400,location=no,menubar=no');
                 }
             });
         });
+
+        // Inject share section on content pages
+        injectShareSection();
+    }
+
+    /**
+     * Inject share section at bottom of content pages
+     */
+    function injectShareSection() {
+        const mainContent = document.querySelector('main');
+        const isContentPage = document.querySelector('.content-section, .page-header');
+        const existingShareSection = document.querySelector('.share-section');
+
+        if (!mainContent || !isContentPage || existingShareSection) return;
+
+        const shareSection = document.createElement('div');
+        shareSection.className = 'share-section';
+        shareSection.innerHTML = `
+            <h3>Share This Resource</h3>
+            <p style="color: var(--color-text-light); margin-bottom: 1rem;">Help others discover this information</p>
+            <div class="share-buttons">
+                <button class="share-btn share-btn--facebook" data-share="facebook" aria-label="Share on Facebook">
+                    <span aria-hidden="true">f</span> Facebook
+                </button>
+                <button class="share-btn share-btn--twitter" data-share="twitter" aria-label="Share on X/Twitter">
+                    <span aria-hidden="true">&#120143;</span> Twitter
+                </button>
+                <button class="share-btn share-btn--linkedin" data-share="linkedin" aria-label="Share on LinkedIn">
+                    <span aria-hidden="true">in</span> LinkedIn
+                </button>
+                <button class="share-btn share-btn--pinterest" data-share="pinterest" aria-label="Share on Pinterest">
+                    <span aria-hidden="true">P</span> Pinterest
+                </button>
+                <button class="share-btn share-btn--email" data-share="email" aria-label="Share via Email">
+                    <span aria-hidden="true">&#9993;</span> Email
+                </button>
+                <button class="share-btn share-btn--copy" data-share="copy" aria-label="Copy link">
+                    <span aria-hidden="true">&#128279;</span> Copy Link
+                </button>
+            </div>
+        `;
+
+        // Insert before footer or at end of main
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            footer.parentNode.insertBefore(shareSection, footer);
+        } else {
+            mainContent.appendChild(shareSection);
+        }
+
+        // Re-init share buttons for the new section
+        shareSection.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', async function(e) {
+                const type = this.dataset.share;
+                const pageUrl = encodeURIComponent(window.location.href);
+                const pageTitle = encodeURIComponent(document.title);
+
+                let shareUrl;
+                switch (type) {
+                    case 'facebook':
+                        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+                        break;
+                    case 'twitter':
+                        shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+                        break;
+                    case 'linkedin':
+                        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${pageTitle}`;
+                        break;
+                    case 'pinterest':
+                        shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&description=${pageTitle}`;
+                        break;
+                    case 'email':
+                        window.location.href = `mailto:?subject=${pageTitle}&body=I thought you might find this helpful: ${pageUrl}`;
+                        return;
+                    case 'copy':
+                        e.preventDefault();
+                        try {
+                            await navigator.clipboard.writeText(window.location.href);
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<span aria-hidden="true">&#10003;</span> Copied!';
+                            this.classList.add('copied');
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                                this.classList.remove('copied');
+                            }, 2000);
+                        } catch (err) {
+                            console.error('Failed to copy:', err);
+                        }
+                        return;
+                }
+                if (shareUrl) {
+                    e.preventDefault();
+                    window.open(shareUrl, 'share', 'width=600,height=400,location=no,menubar=no');
+                }
+            });
+        });
+    }
+
+    /**
+     * Calculate and display reading time
+     */
+    function initReadingTime() {
+        const contentSections = document.querySelectorAll('.content-section');
+        const pageHeader = document.querySelector('.page-header');
+
+        if (contentSections.length === 0 || !pageHeader) return;
+
+        // Calculate word count from all content sections
+        let wordCount = 0;
+        contentSections.forEach(section => {
+            const text = section.textContent || '';
+            wordCount += text.trim().split(/\s+/).filter(word => word.length > 0).length;
+        });
+
+        // Average reading speed: 200-250 words per minute
+        const readingSpeed = 225;
+        const minutes = Math.ceil(wordCount / readingSpeed);
+
+        // Create reading time element
+        const readingTimeEl = document.createElement('div');
+        readingTimeEl.className = 'reading-time';
+        readingTimeEl.innerHTML = `${minutes} min read`;
+
+        // Insert after page header title
+        const pageHeaderContent = pageHeader.querySelector('.container');
+        if (pageHeaderContent) {
+            const title = pageHeaderContent.querySelector('h1');
+            if (title && title.nextSibling) {
+                title.parentNode.insertBefore(readingTimeEl, title.nextSibling);
+            } else if (title) {
+                pageHeaderContent.appendChild(readingTimeEl);
+            }
+        }
     }
 
     /**
@@ -403,6 +581,7 @@
         initLazyLoading();
         initThemeToggle();
         initBackToTop();
+        initReadingTime();
     }
 
     // Run on DOM ready
