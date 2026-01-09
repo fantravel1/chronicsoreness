@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free printable symptom diary template for tracking chronic pain. Log pain levels, sleep, mood, medications, and triggers to identify patterns and improve healthcare visits.">
+    <meta name="keywords" content="symptom diary, pain tracker, chronic pain log, fibromyalgia tracker, printable pain diary">
+    <meta name="author" content="ChronicSoreness.com">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/symptom-diary.html">
+    <meta property="og:title" content="Free Printable Symptom Diary">
+    <meta property="og:description" content="Track your chronic pain symptoms with our free printable diary template.">
+
+    <title>Printable Symptom Diary | ChronicSoreness</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://chronicsoreness.com/symptom-diary.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .diary-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+        }
+
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
+        }
+
+        .diary-template {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        [data-theme="dark"] .diary-template {
+            background: var(--color-bg-alt);
+        }
+
+        .diary-header {
+            text-align: center;
+            padding-bottom: var(--space-lg);
+            border-bottom: 2px solid var(--color-bg-dark);
+            margin-bottom: var(--space-lg);
+        }
+
+        .diary-header h2 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .diary-date-range {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .diary-field {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .diary-field label {
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .diary-field input,
+        .diary-field textarea,
+        .diary-field select {
+            padding: var(--space-sm) var(--space-md);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-primary);
+            font-size: var(--font-size-base);
+            background: var(--color-bg-alt);
+        }
+
+        [data-theme="dark"] .diary-field input,
+        [data-theme="dark"] .diary-field textarea,
+        [data-theme="dark"] .diary-field select {
+            background: var(--color-bg-dark);
+            color: var(--color-text);
+            border-color: var(--color-bg-dark);
+        }
+
+        .diary-section {
+            margin-bottom: var(--space-xl);
+            padding-bottom: var(--space-lg);
+            border-bottom: 1px solid var(--color-bg-dark);
+        }
+
+        .diary-section h3 {
+            font-size: var(--font-size-lg);
+            font-family: var(--font-primary);
+            margin-bottom: var(--space-md);
+            color: var(--color-primary);
+        }
+
+        .pain-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-top: var(--space-sm);
+        }
+
+        .pain-scale-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .pain-scale-item input[type="radio"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .pain-scale-item span {
+            font-size: var(--font-size-xs);
+            color: var(--color-text-muted);
+        }
+
+        .body-map {
+            display: flex;
+            justify-content: center;
+            margin: var(--space-md) 0;
+        }
+
+        .body-map-placeholder {
+            width: 200px;
+            height: 300px;
+            border: 2px dashed var(--color-bg-dark);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            padding: var(--space-md);
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-sm);
+        }
+
+        .symptom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .symptom-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .mood-scale {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+
+        .mood-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .notes-area {
+            width: 100%;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .weekly-summary {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: var(--space-xs);
+            text-align: center;
+        }
+
+        .weekly-summary .day-header {
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            padding: var(--space-sm);
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-sm);
+        }
+
+        .weekly-summary .day-cell {
+            padding: var(--space-lg) var(--space-sm);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: var(--radius-sm);
+            min-height: 60px;
+        }
+
+        .tips-box {
+            background: var(--gradient-soft);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-xl);
+        }
+
+        .tips-box h4 {
+            margin-bottom: var(--space-md);
+        }
+
+        .tips-box ul {
+            padding-left: var(--space-lg);
+        }
+
+        .tips-box li {
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-light);
+        }
+
+        /* Print styles */
+        @media print {
+            .header, .footer, .page-header, .diary-intro, .print-btn, .tips-box {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                font-size: 10pt;
+            }
+
+            .diary-template {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+
+            .pain-scale-item input[type="radio"] {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 2px solid #333;
+                border-radius: 50%;
+            }
+
+            .symptom-checkbox input {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 14px;
+                height: 14px;
+                border: 2px solid #333;
+            }
+
+            .diary-field input,
+            .diary-field textarea {
+                border-bottom: 1px solid #333 !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+            }
+
+            .weekly-summary .day-cell {
+                min-height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" role="banner">
+        <nav class="nav-container" aria-label="Main navigation">
+            <div class="logo">
+                <a href="index.html" aria-label="ChronicSoreness Home">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="conditions.html" role="menuitem">Conditions</a></li>
+                <li role="none"><a href="treatments.html" role="menuitem">Treatments</a></li>
+                <li role="none"><a href="lifestyle.html" role="menuitem">Lifestyle</a></li>
+                <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Symptom Diary</h1>
+            <p>Track your symptoms daily to identify patterns and have productive conversations with your healthcare provider.</p>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="diary-intro">
+            <button class="btn btn-primary print-btn" onclick="window.print()">
+                <span>&#128438;</span> Print This Diary
+            </button>
+
+            <div class="info-box">
+                <h4>How to Use This Diary</h4>
+                <p>Print this page and fill it out daily for at least 2-4 weeks before your next appointment. Tracking consistently helps identify patterns in your symptoms, triggers, and what helps. Bring your completed diary to share with your healthcare provider.</p>
+            </div>
+        </div>
+
+        <div class="diary-template">
+            <div class="diary-header">
+                <h2>Daily Symptom Diary</h2>
+                <p>ChronicSoreness.com</p>
+            </div>
+
+            <div class="diary-date-range">
+                <div class="diary-field">
+                    <label for="diary-date">Date:</label>
+                    <input type="text" id="diary-date" placeholder="MM/DD/YYYY">
+                </div>
+                <div class="diary-field">
+                    <label for="diary-day">Day of Week:</label>
+                    <input type="text" id="diary-day" placeholder="Monday">
+                </div>
+            </div>
+
+            <!-- Pain Level -->
+            <div class="diary-section">
+                <h3>Pain Level (0-10)</h3>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-light); margin-bottom: var(--space-sm);">0 = No pain, 10 = Worst pain imaginable</p>
+
+                <div class="diary-field" style="margin-bottom: var(--space-md);">
+                    <label>Morning Pain:</label>
+                    <div class="pain-scale">
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="0"><span>0</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="1"><span>1</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="2"><span>2</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="3"><span>3</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="4"><span>4</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="5"><span>5</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="6"><span>6</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="7"><span>7</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="8"><span>8</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="9"><span>9</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="am-pain" value="10"><span>10</span></div>
+                    </div>
+                </div>
+
+                <div class="diary-field">
+                    <label>Evening Pain:</label>
+                    <div class="pain-scale">
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="0"><span>0</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="1"><span>1</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="2"><span>2</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="3"><span>3</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="4"><span>4</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="5"><span>5</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="6"><span>6</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="7"><span>7</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="8"><span>8</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="9"><span>9</span></div>
+                        <div class="pain-scale-item"><input type="radio" name="pm-pain" value="10"><span>10</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pain Location -->
+            <div class="diary-section">
+                <h3>Pain Location</h3>
+                <div class="diary-field">
+                    <label for="pain-location">Where is your pain today? (describe or mark areas)</label>
+                    <textarea id="pain-location" class="notes-area" placeholder="e.g., Lower back, both shoulders, neck..."></textarea>
+                </div>
+            </div>
+
+            <!-- Other Symptoms -->
+            <div class="diary-section">
+                <h3>Other Symptoms (check all that apply)</h3>
+                <div class="symptoms-grid">
+                    <label class="symptom-checkbox"><input type="checkbox"> Fatigue</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Brain fog</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Headache</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Stiffness</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Nausea</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Dizziness</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Numbness/tingling</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Digestive issues</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Sensitivity to light</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Sensitivity to sound</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Anxiety</label>
+                    <label class="symptom-checkbox"><input type="checkbox"> Depression</label>
+                </div>
+                <div class="diary-field" style="margin-top: var(--space-md);">
+                    <label for="other-symptoms">Other symptoms:</label>
+                    <input type="text" id="other-symptoms" placeholder="List any other symptoms...">
+                </div>
+            </div>
+
+            <!-- Sleep -->
+            <div class="diary-section">
+                <h3>Sleep</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                    <div class="diary-field">
+                        <label for="sleep-hours">Hours slept:</label>
+                        <input type="text" id="sleep-hours" placeholder="e.g., 6.5">
+                    </div>
+                    <div class="diary-field">
+                        <label for="sleep-quality">Sleep quality:</label>
+                        <select id="sleep-quality">
+                            <option value="">Select...</option>
+                            <option value="good">Good - woke refreshed</option>
+                            <option value="fair">Fair - somewhat rested</option>
+                            <option value="poor">Poor - still tired</option>
+                            <option value="terrible">Terrible - exhausted</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="diary-field" style="margin-top: var(--space-md);">
+                    <label for="sleep-notes">Sleep notes (woke up frequently, dreams, etc.):</label>
+                    <input type="text" id="sleep-notes" placeholder="">
+                </div>
+            </div>
+
+            <!-- Mood -->
+            <div class="diary-section">
+                <h3>Mood</h3>
+                <div class="mood-scale">
+                    <label class="mood-item"><input type="radio" name="mood" value="great"> Great</label>
+                    <label class="mood-item"><input type="radio" name="mood" value="good"> Good</label>
+                    <label class="mood-item"><input type="radio" name="mood" value="okay"> Okay</label>
+                    <label class="mood-item"><input type="radio" name="mood" value="low"> Low</label>
+                    <label class="mood-item"><input type="radio" name="mood" value="very-low"> Very Low</label>
+                </div>
+            </div>
+
+            <!-- Activities & Energy -->
+            <div class="diary-section">
+                <h3>Energy & Activity Level</h3>
+                <div class="diary-field">
+                    <label for="energy-level">Energy level (1-10):</label>
+                    <input type="text" id="energy-level" placeholder="1 = exhausted, 10 = energetic">
+                </div>
+                <div class="diary-field" style="margin-top: var(--space-md);">
+                    <label for="activities">Activities completed today:</label>
+                    <textarea id="activities" class="notes-area" placeholder="e.g., Light housework, 10-min walk, cooked dinner..."></textarea>
+                </div>
+            </div>
+
+            <!-- Medications -->
+            <div class="diary-section">
+                <h3>Medications Taken</h3>
+                <div class="diary-field">
+                    <label for="medications">List medications and times taken:</label>
+                    <textarea id="medications" class="notes-area" placeholder="e.g., Ibuprofen 400mg - 8am, Duloxetine 30mg - 9am..."></textarea>
+                </div>
+                <div class="diary-field" style="margin-top: var(--space-md);">
+                    <label for="med-effectiveness">How well did your medications work today?</label>
+                    <select id="med-effectiveness">
+                        <option value="">Select...</option>
+                        <option value="very">Very effective</option>
+                        <option value="somewhat">Somewhat effective</option>
+                        <option value="slight">Slight relief</option>
+                        <option value="none">No relief</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Triggers & Relief -->
+            <div class="diary-section">
+                <h3>Triggers & Relief</h3>
+                <div class="diary-field">
+                    <label for="triggers">What made symptoms worse today?</label>
+                    <textarea id="triggers" class="notes-area" placeholder="e.g., Stress at work, weather change, poor sleep, physical activity..."></textarea>
+                </div>
+                <div class="diary-field" style="margin-top: var(--space-md);">
+                    <label for="relief">What helped relieve symptoms?</label>
+                    <textarea id="relief" class="notes-area" placeholder="e.g., Heat pad, rest, medication, gentle stretching..."></textarea>
+                </div>
+            </div>
+
+            <!-- Menstrual Cycle -->
+            <div class="diary-section">
+                <h3>Menstrual Cycle (if applicable)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+                    <div class="diary-field">
+                        <label for="cycle-day">Cycle day:</label>
+                        <input type="text" id="cycle-day" placeholder="e.g., Day 14">
+                    </div>
+                    <div class="diary-field">
+                        <label for="period">Currently on period?</label>
+                        <select id="period">
+                            <option value="">Select...</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                            <option value="na">N/A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Notes -->
+            <div class="diary-section" style="border-bottom: none;">
+                <h3>Additional Notes</h3>
+                <div class="diary-field">
+                    <label for="notes">Anything else noteworthy about today:</label>
+                    <textarea id="notes" class="notes-area" placeholder="Weather, stress levels, special events, questions for doctor..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="diary-intro">
+            <div class="tips-box">
+                <h4>Tips for Effective Tracking</h4>
+                <ul>
+                    <li>Try to fill out the diary at the same time each day for consistency</li>
+                    <li>Be honest about pain levels - your records are for your benefit</li>
+                    <li>Note patterns: Does pain increase after certain foods, activities, or times of day?</li>
+                    <li>Track your menstrual cycle to see hormonal patterns</li>
+                    <li>Bring at least 2 weeks of entries to your healthcare appointments</li>
+                    <li>Consider using a scale where 4-5 is your "normal" baseline, not 0</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: var(--space-xl); text-align: center;">
+                <a href="resources.html" class="btn btn-secondary" style="margin-right: var(--space-md);">Back to Resources</a>
+                <a href="symptom-checker.html" class="btn btn-primary">Take Symptom Quiz</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                    <p>Empowering women with evidence-based information to understand and manage chronic pain conditions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Conditions</h4>
+                    <ul>
+                        <li><a href="conditions.html#fibromyalgia">Fibromyalgia</a></li>
+                        <li><a href="conditions.html#endometriosis">Endometriosis</a></li>
+                        <li><a href="conditions.html#chronic-fatigue">Chronic Fatigue</a></li>
+                        <li><a href="conditions.html#pelvic-pain">Pelvic Pain</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="treatments.html">Treatment Options</a></li>
+                        <li><a href="lifestyle.html">Lifestyle Guide</a></li>
+                        <li><a href="resources.html">Tools & Downloads</a></li>
+                        <li><a href="symptom-checker.html">Symptom Checker</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="glossary.html">Medical Glossary</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="disclaimer"><strong>Medical Disclaimer:</strong> This website provides general information for educational purposes only. It is not intended as medical advice and should not replace consultation with qualified healthcare providers.</p>
+                <p class="copyright">&copy; 2025 ChronicSoreness. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
