@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Glossary of medical terms related to chronic pain conditions in women. Understand fibromyalgia, endometriosis, autoimmune conditions, and pain management terminology.">
+    <meta name="keywords" content="chronic pain glossary, medical terms, fibromyalgia terminology, pain management definitions">
+    <meta name="author" content="ChronicSoreness.com">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/glossary.html">
+    <meta property="og:title" content="Chronic Pain Medical Glossary">
+    <meta property="og:description" content="Understand medical terms related to chronic pain conditions with our comprehensive glossary.">
+
+    <title>Medical Glossary | ChronicSoreness</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://chronicsoreness.com/glossary.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .glossary-nav {
+            background: var(--color-bg-alt);
+            padding: var(--space-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-xl);
+            position: sticky;
+            top: calc(var(--header-height) + var(--space-md));
+            z-index: 100;
+        }
+
+        .glossary-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            justify-content: center;
+        }
+
+        .glossary-nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-fast);
+        }
+
+        [data-theme="dark"] .glossary-nav a {
+            background: var(--color-bg-dark);
+        }
+
+        .glossary-nav a:hover,
+        .glossary-nav a.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .glossary-nav a.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .glossary-section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .glossary-letter {
+            font-size: var(--font-size-3xl);
+            font-family: var(--font-display);
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-lg);
+        }
+
+        .glossary-term {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--color-bg-alt);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--color-primary-light);
+        }
+
+        [data-theme="dark"] .glossary-term {
+            background: var(--color-bg-alt);
+        }
+
+        .glossary-term h3 {
+            font-size: var(--font-size-lg);
+            font-family: var(--font-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--color-text);
+        }
+
+        .glossary-term .pronunciation {
+            font-style: italic;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-sm);
+        }
+
+        .glossary-term p {
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .glossary-term .related {
+            margin-top: var(--space-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .glossary-term .related a {
+            color: var(--color-primary);
+        }
+
+        .search-box {
+            margin-bottom: var(--space-xl);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            border: 2px solid var(--color-bg-dark);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-base);
+            font-family: var(--font-primary);
+            background: white;
+            transition: border-color var(--transition-fast);
+        }
+
+        [data-theme="dark"] .search-box input {
+            background: var(--color-bg-alt);
+            border-color: var(--color-bg-dark);
+            color: var(--color-text);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: var(--space-2xl);
+            color: var(--color-text-light);
+        }
+
+        .term-count {
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-xl);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header" role="banner">
+        <nav class="nav-container" aria-label="Main navigation">
+            <div class="logo">
+                <a href="index.html" aria-label="ChronicSoreness Home">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="conditions.html" role="menuitem">Conditions</a></li>
+                <li role="none"><a href="treatments.html" role="menuitem">Treatments</a></li>
+                <li role="none"><a href="lifestyle.html" role="menuitem">Lifestyle</a></li>
+                <li role="none"><a href="resources.html" role="menuitem">Resources</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Medical Glossary</h1>
+            <p>Understanding medical terminology can help you communicate with healthcare providers and better understand your condition.</p>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <div class="container" style="max-width: 900px; padding-top: var(--space-xl);">
+
+            <div class="search-box">
+                <label for="glossary-search" class="visually-hidden">Search terms</label>
+                <input type="text" id="glossary-search" placeholder="Search for a term..." aria-label="Search glossary">
+            </div>
+
+            <p class="term-count" id="term-count">Showing all 50+ terms</p>
+
+            <nav class="glossary-nav" aria-label="Alphabetical navigation">
+                <ul id="alpha-nav">
+                    <!-- Generated by JS -->
+                </ul>
+            </nav>
+
+            <div id="glossary-content">
+                <!-- A -->
+                <section class="glossary-section" id="section-A">
+                    <h2 class="glossary-letter">A</h2>
+
+                    <div class="glossary-term" data-term="acute pain">
+                        <h3>Acute Pain</h3>
+                        <p>Pain that comes on suddenly and has a known cause, typically lasting less than 3-6 months. It usually resolves when the underlying cause is treated. Contrast with chronic pain.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="adenomyosis">
+                        <h3>Adenomyosis</h3>
+                        <p class="pronunciation">/ad-uh-no-my-OH-sis/</p>
+                        <p>A condition where endometrial tissue grows into the muscular wall of the uterus, causing heavy periods and pelvic pain. Related to but distinct from endometriosis.</p>
+                        <p class="related">Related: <a href="conditions.html#endometriosis">Endometriosis</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="allodynia">
+                        <h3>Allodynia</h3>
+                        <p class="pronunciation">/al-oh-DIN-ee-uh/</p>
+                        <p>Pain from stimuli that don't normally cause pain, such as light touch or clothing on skin. Common in fibromyalgia and other central sensitization conditions.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="autoimmune disease">
+                        <h3>Autoimmune Disease</h3>
+                        <p>A condition where the immune system mistakenly attacks the body's own healthy cells and tissues. Examples include lupus, rheumatoid arthritis, and multiple sclerosis.</p>
+                        <p class="related">Related: <a href="conditions.html#autoimmune">Autoimmune Conditions</a></p>
+                    </div>
+                </section>
+
+                <!-- B -->
+                <section class="glossary-section" id="section-B">
+                    <h2 class="glossary-letter">B</h2>
+
+                    <div class="glossary-term" data-term="biologic">
+                        <h3>Biologic (Medication)</h3>
+                        <p>A type of medication made from living cells that targets specific parts of the immune system. Used to treat autoimmune conditions like rheumatoid arthritis and lupus.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="brain fog">
+                        <h3>Brain Fog</h3>
+                        <p>A term describing cognitive difficulties including problems with memory, concentration, and mental clarity. Common in fibromyalgia (called "fibro fog") and chronic fatigue syndrome.</p>
+                    </div>
+                </section>
+
+                <!-- C -->
+                <section class="glossary-section" id="section-C">
+                    <h2 class="glossary-letter">C</h2>
+
+                    <div class="glossary-term" data-term="central sensitization">
+                        <h3>Central Sensitization</h3>
+                        <p>A condition where the central nervous system becomes hypersensitive, amplifying pain signals. The brain and spinal cord process pain more intensely than normal. Believed to play a role in fibromyalgia, chronic headaches, and other pain conditions.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="chronic fatigue syndrome">
+                        <h3>Chronic Fatigue Syndrome (CFS/ME)</h3>
+                        <p>Also called myalgic encephalomyelitis (ME). A complex illness characterized by extreme fatigue that doesn't improve with rest and worsens with physical or mental activity.</p>
+                        <p class="related">Related: <a href="conditions.html#chronic-fatigue">Chronic Fatigue Syndrome</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="chronic pain">
+                        <h3>Chronic Pain</h3>
+                        <p>Pain that persists for more than 3-6 months, often continuing after the original injury has healed. It may or may not have an identifiable cause and requires different treatment approaches than acute pain.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="comorbidity">
+                        <h3>Comorbidity</h3>
+                        <p>The presence of two or more medical conditions in the same person at the same time. Many chronic pain conditions have common comorbidities, such as depression, anxiety, or sleep disorders.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="corticosteroid">
+                        <h3>Corticosteroid</h3>
+                        <p>A class of anti-inflammatory medications that mimic hormones produced by the adrenal glands. Used to reduce inflammation in many conditions. Examples include prednisone and cortisone.</p>
+                    </div>
+                </section>
+
+                <!-- D -->
+                <section class="glossary-section" id="section-D">
+                    <h2 class="glossary-letter">D</h2>
+
+                    <div class="glossary-term" data-term="dysmenorrhea">
+                        <h3>Dysmenorrhea</h3>
+                        <p class="pronunciation">/dis-men-uh-REE-uh/</p>
+                        <p>Painful menstrual periods. Primary dysmenorrhea has no underlying cause; secondary dysmenorrhea is caused by conditions like endometriosis or fibroids.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="dyspareunia">
+                        <h3>Dyspareunia</h3>
+                        <p class="pronunciation">/dis-puh-ROO-nee-uh/</p>
+                        <p>Pain during or after sexual intercourse. Can be caused by various conditions including endometriosis, pelvic floor dysfunction, or vulvodynia.</p>
+                    </div>
+                </section>
+
+                <!-- E -->
+                <section class="glossary-section" id="section-E">
+                    <h2 class="glossary-letter">E</h2>
+
+                    <div class="glossary-term" data-term="endometriosis">
+                        <h3>Endometriosis</h3>
+                        <p class="pronunciation">/en-doh-mee-tree-OH-sis/</p>
+                        <p>A condition where tissue similar to the uterine lining grows outside the uterus, commonly on the ovaries, fallopian tubes, and pelvic tissues. Causes pain and sometimes fertility problems.</p>
+                        <p class="related">Related: <a href="conditions.html#endometriosis">Endometriosis Guide</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="endorphins">
+                        <h3>Endorphins</h3>
+                        <p>Natural chemicals produced by the body that reduce pain perception and produce feelings of well-being. Released during exercise, laughter, and other activities.</p>
+                    </div>
+                </section>
+
+                <!-- F -->
+                <section class="glossary-section" id="section-F">
+                    <h2 class="glossary-letter">F</h2>
+
+                    <div class="glossary-term" data-term="fibromyalgia">
+                        <h3>Fibromyalgia</h3>
+                        <p class="pronunciation">/fy-broh-my-AL-juh/</p>
+                        <p>A chronic condition characterized by widespread musculoskeletal pain, fatigue, sleep disturbances, and cognitive difficulties. Affects about 2-8% of the population, predominantly women.</p>
+                        <p class="related">Related: <a href="conditions.html#fibromyalgia">Fibromyalgia Guide</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="flare">
+                        <h3>Flare (Flare-up)</h3>
+                        <p>A period when symptoms temporarily worsen beyond their usual level. Flares can be triggered by stress, overexertion, weather changes, or occur without obvious cause.</p>
+                    </div>
+                </section>
+
+                <!-- G -->
+                <section class="glossary-section" id="section-G">
+                    <h2 class="glossary-letter">G</h2>
+
+                    <div class="glossary-term" data-term="gate control theory">
+                        <h3>Gate Control Theory</h3>
+                        <p>A theory of pain that suggests the spinal cord contains a "gate" that can block or allow pain signals to reach the brain. Explains why rubbing an injury can reduce pain.</p>
+                    </div>
+                </section>
+
+                <!-- H -->
+                <section class="glossary-section" id="section-H">
+                    <h2 class="glossary-letter">H</h2>
+
+                    <div class="glossary-term" data-term="hyperalgesia">
+                        <h3>Hyperalgesia</h3>
+                        <p class="pronunciation">/hy-per-al-JEE-zee-uh/</p>
+                        <p>Increased sensitivity to pain, where normally painful stimuli feel more painful than they should. Can develop with chronic pain conditions.</p>
+                    </div>
+                </section>
+
+                <!-- I -->
+                <section class="glossary-section" id="section-I">
+                    <h2 class="glossary-letter">I</h2>
+
+                    <div class="glossary-term" data-term="inflammation">
+                        <h3>Inflammation</h3>
+                        <p>The body's immune response to injury, infection, or irritation. Characterized by redness, warmth, swelling, and pain. Chronic inflammation plays a role in many pain conditions.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="interstitial cystitis">
+                        <h3>Interstitial Cystitis</h3>
+                        <p class="pronunciation">/in-ter-STISH-ul sis-TY-tis/</p>
+                        <p>Also called painful bladder syndrome. A chronic condition causing bladder pressure, bladder pain, and sometimes pelvic pain. Often coexists with other chronic pain conditions.</p>
+                    </div>
+                </section>
+
+                <!-- L -->
+                <section class="glossary-section" id="section-L">
+                    <h2 class="glossary-letter">L</h2>
+
+                    <div class="glossary-term" data-term="laparoscopy">
+                        <h3>Laparoscopy</h3>
+                        <p class="pronunciation">/lap-uh-ROS-kuh-pee/</p>
+                        <p>A minimally invasive surgical procedure using a thin camera inserted through small incisions. Used to diagnose and treat conditions like endometriosis.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="lupus">
+                        <h3>Lupus (Systemic Lupus Erythematosus)</h3>
+                        <p>A chronic autoimmune disease that can affect joints, skin, kidneys, brain, and other organs. Symptoms include joint pain, fatigue, and skin rashes.</p>
+                        <p class="related">Related: <a href="conditions.html#autoimmune">Autoimmune Conditions</a></p>
+                    </div>
+                </section>
+
+                <!-- M -->
+                <section class="glossary-section" id="section-M">
+                    <h2 class="glossary-letter">M</h2>
+
+                    <div class="glossary-term" data-term="migraine">
+                        <h3>Migraine</h3>
+                        <p>A neurological condition characterized by intense, debilitating headaches often accompanied by nausea, vomiting, and sensitivity to light and sound. May include visual disturbances called aura.</p>
+                        <p class="related">Related: <a href="conditions.html#migraines">Chronic Migraines</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="multimodal treatment">
+                        <h3>Multimodal Treatment</h3>
+                        <p>An approach that combines multiple types of treatment (medication, physical therapy, psychological support, lifestyle changes) for more effective pain management than any single treatment alone.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="myofascial pain">
+                        <h3>Myofascial Pain Syndrome</h3>
+                        <p>A chronic pain disorder caused by trigger points in muscles that cause pain in seemingly unrelated parts of the body (referred pain).</p>
+                    </div>
+                </section>
+
+                <!-- N -->
+                <section class="glossary-section" id="section-N">
+                    <h2 class="glossary-letter">N</h2>
+
+                    <div class="glossary-term" data-term="neuropathic pain">
+                        <h3>Neuropathic Pain</h3>
+                        <p>Pain caused by damage or dysfunction of the nervous system itself, rather than tissue injury. Often described as burning, shooting, or electric shock-like sensations.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="nsaid">
+                        <h3>NSAID</h3>
+                        <p>Non-Steroidal Anti-Inflammatory Drug. A class of medications that reduce pain and inflammation. Examples include ibuprofen, naproxen, and aspirin.</p>
+                    </div>
+                </section>
+
+                <!-- O -->
+                <section class="glossary-section" id="section-O">
+                    <h2 class="glossary-letter">O</h2>
+
+                    <div class="glossary-term" data-term="orthostatic intolerance">
+                        <h3>Orthostatic Intolerance</h3>
+                        <p>Symptoms that worsen when upright and improve when lying down, including dizziness, lightheadedness, and fatigue. Common in chronic fatigue syndrome.</p>
+                    </div>
+                </section>
+
+                <!-- P -->
+                <section class="glossary-section" id="section-P">
+                    <h2 class="glossary-letter">P</h2>
+
+                    <div class="glossary-term" data-term="pacing">
+                        <h3>Pacing</h3>
+                        <p>A self-management strategy of balancing activity and rest to avoid symptom flares. Involves breaking activities into smaller chunks and taking planned rest breaks.</p>
+                        <p class="related">Related: <a href="lifestyle.html">Lifestyle Strategies</a></p>
+                    </div>
+
+                    <div class="glossary-term" data-term="pelvic floor dysfunction">
+                        <h3>Pelvic Floor Dysfunction</h3>
+                        <p>A condition where the pelvic floor muscles are too tight, too weak, or uncoordinated, causing pain, bladder/bowel issues, or sexual dysfunction.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="post-exertional malaise">
+                        <h3>Post-Exertional Malaise (PEM)</h3>
+                        <p>A worsening of symptoms following physical or mental exertion, often delayed by 12-48 hours. A hallmark symptom of chronic fatigue syndrome/ME.</p>
+                    </div>
+                </section>
+
+                <!-- R -->
+                <section class="glossary-section" id="section-R">
+                    <h2 class="glossary-letter">R</h2>
+
+                    <div class="glossary-term" data-term="referred pain">
+                        <h3>Referred Pain</h3>
+                        <p>Pain felt in a location different from its actual source. For example, trigger points in back muscles may cause pain that feels like it's in the chest.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="remission">
+                        <h3>Remission</h3>
+                        <p>A period when disease symptoms decrease or disappear temporarily. Can be partial (some symptoms remain) or complete (all symptoms gone).</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="rheumatoid arthritis">
+                        <h3>Rheumatoid Arthritis (RA)</h3>
+                        <p>An autoimmune disease that causes chronic inflammation of the joints, leading to pain, swelling, and eventual joint damage. Affects women 2-3 times more than men.</p>
+                        <p class="related">Related: <a href="conditions.html#autoimmune">Autoimmune Conditions</a></p>
+                    </div>
+                </section>
+
+                <!-- S -->
+                <section class="glossary-section" id="section-S">
+                    <h2 class="glossary-letter">S</h2>
+
+                    <div class="glossary-term" data-term="sjogrens syndrome">
+                        <h3>Sj&ouml;gren's Syndrome</h3>
+                        <p class="pronunciation">/SHOW-grins/</p>
+                        <p>An autoimmune disorder that primarily affects moisture-producing glands, causing dry eyes and dry mouth. Can also cause fatigue and joint pain.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="snri">
+                        <h3>SNRI</h3>
+                        <p>Serotonin-Norepinephrine Reuptake Inhibitor. A class of antidepressant medications that can also help with chronic pain. Examples include duloxetine (Cymbalta) and milnacipran (Savella).</p>
+                    </div>
+                </section>
+
+                <!-- T -->
+                <section class="glossary-section" id="section-T">
+                    <h2 class="glossary-letter">T</h2>
+
+                    <div class="glossary-term" data-term="tender points">
+                        <h3>Tender Points</h3>
+                        <p>Specific areas on the body that are painful when pressed. Previously used to diagnose fibromyalgia, now part of a broader diagnostic criteria.</p>
+                    </div>
+
+                    <div class="glossary-term" data-term="trigger point">
+                        <h3>Trigger Point</h3>
+                        <p>A tight, irritable spot in a muscle that can cause local pain and referred pain to other areas. Can be treated with massage, injections, or physical therapy.</p>
+                    </div>
+                </section>
+
+                <!-- V -->
+                <section class="glossary-section" id="section-V">
+                    <h2 class="glossary-letter">V</h2>
+
+                    <div class="glossary-term" data-term="vulvodynia">
+                        <h3>Vulvodynia</h3>
+                        <p class="pronunciation">/vul-voh-DIN-ee-uh/</p>
+                        <p>Chronic pain in the vulva (external female genitalia) lasting at least 3 months without an identifiable cause. Pain may be constant or triggered by touch.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="no-results hidden" id="no-results">
+                <p>No terms found matching your search. Try a different keyword.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo-icon">&#10084;</span>
+                    <span class="logo-text">Chronic<strong>Soreness</strong></span>
+                    <p>Empowering women with evidence-based information to understand and manage chronic pain conditions.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Conditions</h4>
+                    <ul>
+                        <li><a href="conditions.html#fibromyalgia">Fibromyalgia</a></li>
+                        <li><a href="conditions.html#endometriosis">Endometriosis</a></li>
+                        <li><a href="conditions.html#chronic-fatigue">Chronic Fatigue</a></li>
+                        <li><a href="conditions.html#pelvic-pain">Pelvic Pain</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="treatments.html">Treatment Options</a></li>
+                        <li><a href="lifestyle.html">Lifestyle Guide</a></li>
+                        <li><a href="resources.html">Tools & Downloads</a></li>
+                        <li><a href="symptom-checker.html">Symptom Checker</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="glossary.html">Medical Glossary</a></li>
+                        <li><a href="about.html#contact">Contact Us</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="disclaimer"><strong>Medical Disclaimer:</strong> This website provides general information for educational purposes only. It is not intended as medical advice and should not replace consultation with qualified healthcare providers.</p>
+                <p class="copyright">&copy; 2025 ChronicSoreness. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        const searchInput = document.getElementById('glossary-search');
+        const alphaNav = document.getElementById('alpha-nav');
+        const glossaryContent = document.getElementById('glossary-content');
+        const noResults = document.getElementById('no-results');
+        const termCount = document.getElementById('term-count');
+        const sections = glossaryContent.querySelectorAll('.glossary-section');
+        const terms = glossaryContent.querySelectorAll('.glossary-term');
+
+        // Build alphabetical navigation
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+        const existingLetters = new Set();
+
+        sections.forEach(section => {
+            const letter = section.id.replace('section-', '');
+            existingLetters.add(letter);
+        });
+
+        letters.forEach(letter => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `#section-${letter}`;
+            a.textContent = letter;
+
+            if (!existingLetters.has(letter)) {
+                a.classList.add('disabled');
+                a.removeAttribute('href');
+            }
+
+            li.appendChild(a);
+            alphaNav.appendChild(li);
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            terms.forEach(term => {
+                const termText = term.getAttribute('data-term') || '';
+                const content = term.textContent.toLowerCase();
+
+                if (query === '' || termText.includes(query) || content.includes(query)) {
+                    term.style.display = '';
+                    visibleCount++;
+                } else {
+                    term.style.display = 'none';
+                }
+            });
+
+            // Show/hide sections based on visible terms
+            sections.forEach(section => {
+                const visibleTerms = section.querySelectorAll('.glossary-term:not([style*="display: none"])');
+                section.style.display = visibleTerms.length > 0 ? '' : 'none';
+            });
+
+            // Update count and no results message
+            if (visibleCount === 0 && query !== '') {
+                noResults.classList.remove('hidden');
+                termCount.textContent = 'No terms found';
+            } else {
+                noResults.classList.add('hidden');
+                termCount.textContent = query ? `Showing ${visibleCount} matching term${visibleCount !== 1 ? 's' : ''}` : `Showing all ${terms.length} terms`;
+            }
+        });
+
+        // Update initial count
+        termCount.textContent = `Showing all ${terms.length} terms`;
+
+        // Smooth scroll for alpha nav
+        alphaNav.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const navHeight = document.querySelector('.glossary-nav').offsetHeight;
+                    const offset = headerHeight + navHeight + 20;
+
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
