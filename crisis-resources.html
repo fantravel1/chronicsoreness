@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis & Emergency Resources | ChronicSoreness</title>
+    <meta name="description" content="Immediate help for chronic pain crises, mental health emergencies, and urgent support resources. Find hotlines, chat services, and emergency contacts.">
+    <meta name="keywords" content="chronic pain crisis, mental health emergency, suicide prevention, pain crisis hotline, urgent support">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Crisis & Emergency Resources | ChronicSoreness">
+    <meta property="og:description" content="Immediate help for chronic pain crises, mental health emergencies, and urgent support resources.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://chronicsoreness.com/crisis-resources.html">
+    <meta property="og:image" content="https://chronicsoreness.com/images/og-image.svg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chronicsoreness.com/crisis-resources.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        .crisis-banner {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .crisis-banner h1 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .crisis-banner p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        .emergency-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: #dc2626;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .emergency-call:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .crisis-content {
+            padding: 3rem 0;
+        }
+
+        .resource-category {
+            margin-bottom: 3rem;
+        }
+
+        .resource-category h2 {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--color-bg-dark);
+        }
+
+        .hotline-card {
+            background: var(--color-bg-alt);
+            border: 2px solid var(--color-bg-dark);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .hotline-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .hotline-card.urgent {
+            border-color: #dc2626;
+            background: #fef2f2;
+        }
+
+        [data-theme="dark"] .hotline-card.urgent {
+            background: rgba(220, 38, 38, 0.1);
+        }
+
+        .hotline-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .hotline-description {
+            color: var(--color-text-light);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .hotline-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .contact-link.phone {
+            background: #10b981;
+            color: white;
+        }
+
+        .contact-link.phone:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .contact-link.text {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .contact-link.text:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .contact-link.chat {
+            background: #8b5cf6;
+            color: white;
+        }
+
+        .contact-link.chat:hover {
+            background: #7c3aed;
+            transform: translateY(-2px);
+        }
+
+        .contact-link.website {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .contact-link.website:hover {
+            background: var(--color-primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .availability {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        [data-theme="dark"] .warning-box {
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        .warning-box h3 {
+            color: #b45309;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .warning-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text);
+        }
+
+        .warning-box li::before {
+            content: "!";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #b45309;
+        }
+
+        .self-care-section {
+            background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .self-care-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .self-care-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .self-care-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .self-care-item {
+            background: var(--color-bg);
+            border: 1px solid var(--color-bg-dark);
+            border-radius: 0.75rem;
+            padding: 1rem;
+        }
+
+        .self-care-item h4 {
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .self-care-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        .international-note {
+            background: var(--color-bg-alt);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .international-note h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .international-note p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        .international-note a {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Crisis Banner -->
+    <div class="crisis-banner">
+        <h1>If you're in immediate danger, call emergency services</h1>
+        <p>You are not alone. Help is available right now.</p>
+        <a href="tel:911" class="emergency-call">
+            <span aria-hidden="true">&#128222;</span>
+            Call 911
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav" aria-label="Main navigation">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon" aria-hidden="true">&#10084;</span>
+                    ChronicSoreness
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="conditions.html">Conditions</a></li>
+                    <li><a href="treatments.html">Treatments</a></li>
+                    <li><a href="lifestyle.html">Lifestyle</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="crisis-content">
+        <div class="container">
+            <div class="warning-box">
+                <h3>
+                    <span aria-hidden="true">&#9888;</span>
+                    When to Seek Emergency Care
+                </h3>
+                <ul>
+                    <li>Sudden severe pain that is different from your usual chronic pain</li>
+                    <li>Chest pain, difficulty breathing, or signs of a heart attack</li>
+                    <li>Sudden weakness, numbness, or difficulty speaking (stroke symptoms)</li>
+                    <li>Thoughts of harming yourself or others</li>
+                    <li>Fever with severe pain (possible infection)</li>
+                    <li>Pain after an injury or accident</li>
+                    <li>Severe abdominal pain with vomiting blood</li>
+                </ul>
+            </div>
+
+            <!-- Mental Health Crisis Resources -->
+            <section class="resource-category">
+                <h2>Mental Health Crisis Support</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--color-text-light);">
+                    Living with chronic pain can be emotionally overwhelming. If you're struggling with depression,
+                    anxiety, or thoughts of suicide, please reach out. These services are free and confidential.
+                </p>
+
+                <div class="hotline-card urgent">
+                    <div class="hotline-name">988 Suicide & Crisis Lifeline</div>
+                    <div class="hotline-description">
+                        Free, confidential support for people in distress. Trained counselors available 24/7 for anyone
+                        experiencing emotional distress or suicidal thoughts.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:988" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            Call 988
+                        </a>
+                        <a href="sms:988" class="contact-link text">
+                            <span aria-hidden="true">&#128172;</span>
+                            Text 988
+                        </a>
+                        <a href="https://988lifeline.org/chat/" target="_blank" rel="noopener" class="contact-link chat">
+                            <span aria-hidden="true">&#128187;</span>
+                            Online Chat
+                        </a>
+                    </div>
+                    <div class="availability">Available 24/7, 365 days a year</div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">Crisis Text Line</div>
+                    <div class="hotline-description">
+                        Free, 24/7 text-based support for anyone in crisis. Text with a trained crisis counselor
+                        from anywhere in the US.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="sms:741741?body=HELLO" class="contact-link text">
+                            <span aria-hidden="true">&#128172;</span>
+                            Text HOME to 741741
+                        </a>
+                    </div>
+                    <div class="availability">Available 24/7</div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">SAMHSA National Helpline</div>
+                    <div class="hotline-description">
+                        Treatment referral service for substance abuse and mental health. Free, confidential,
+                        24/7 information and referrals in English and Spanish.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:1-800-662-4357" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            1-800-662-4357
+                        </a>
+                        <a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Website
+                        </a>
+                    </div>
+                    <div class="availability">Available 24/7, 365 days a year</div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">Veterans Crisis Line</div>
+                    <div class="hotline-description">
+                        Confidential support for veterans and their families. Connect with caring, qualified
+                        responders with the Department of Veterans Affairs.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:988" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            Dial 988, Press 1
+                        </a>
+                        <a href="sms:838255" class="contact-link text">
+                            <span aria-hidden="true">&#128172;</span>
+                            Text 838255
+                        </a>
+                        <a href="https://www.veteranscrisisline.net/get-help/chat" target="_blank" rel="noopener" class="contact-link chat">
+                            <span aria-hidden="true">&#128187;</span>
+                            Online Chat
+                        </a>
+                    </div>
+                    <div class="availability">Available 24/7</div>
+                </div>
+            </section>
+
+            <!-- Chronic Pain Crisis Resources -->
+            <section class="resource-category">
+                <h2>Chronic Pain Support Lines</h2>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">American Chronic Pain Association</div>
+                    <div class="hotline-description">
+                        Support and resources for people living with chronic pain. Find peer support groups,
+                        educational materials, and coping strategies.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:1-800-533-3231" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            1-800-533-3231
+                        </a>
+                        <a href="https://www.theacpa.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Website
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">Pain Connection</div>
+                    <div class="hotline-description">
+                        Chronic pain support community with peer support, educational programs, and resources
+                        to help you manage your pain and improve quality of life.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="https://painconnection.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">U.S. Pain Foundation</div>
+                    <div class="hotline-description">
+                        Educational resources, advocacy, and support programs for people with chronic pain
+                        conditions. Access to pain navigators and community support.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="https://uspainfoundation.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Condition-Specific Hotlines -->
+            <section class="resource-category">
+                <h2>Condition-Specific Support</h2>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">Endometriosis Association</div>
+                    <div class="hotline-description">
+                        Support and information for those dealing with endometriosis. Crisis support and
+                        resources for managing this challenging condition.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:1-414-355-2200" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            1-414-355-2200
+                        </a>
+                        <a href="https://endometriosisassn.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Website
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">National Fibromyalgia Association</div>
+                    <div class="hotline-description">
+                        Education, support, and advocacy for fibromyalgia patients. Resources for
+                        understanding and managing your condition.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="https://www.fmaware.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">ME/CFS Foundation</div>
+                    <div class="hotline-description">
+                        Support for those with Myalgic Encephalomyelitis/Chronic Fatigue Syndrome.
+                        Information, resources, and community support.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="https://solvecfs.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Solve ME/CFS Initiative
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">American Migraine Foundation</div>
+                    <div class="hotline-description">
+                        Resources and support for migraine sufferers. Find doctors, treatment information,
+                        and connect with others who understand.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="https://americanmigrainefoundation.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hotline-card">
+                    <div class="hotline-name">Lupus Foundation of America</div>
+                    <div class="hotline-description">
+                        Support and resources for people living with lupus. Health education,
+                        research updates, and community programs.
+                    </div>
+                    <div class="hotline-contacts">
+                        <a href="tel:1-800-558-0121" class="contact-link phone">
+                            <span aria-hidden="true">&#128222;</span>
+                            1-800-558-0121
+                        </a>
+                        <a href="https://www.lupus.org/" target="_blank" rel="noopener" class="contact-link website">
+                            <span aria-hidden="true">&#127760;</span>
+                            Website
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Immediate Self-Care -->
+            <section class="self-care-section">
+                <h3>Immediate Self-Care During a Pain Flare</h3>
+                <p style="margin-bottom: 1.5rem; color: var(--color-text-light);">
+                    While waiting for help or during a difficult moment, try these grounding techniques:
+                </p>
+
+                <div class="self-care-grid">
+                    <div class="self-care-item">
+                        <h4>Box Breathing</h4>
+                        <p>Breathe in for 4 counts, hold for 4, breathe out for 4, hold for 4. Repeat 4 times.</p>
+                    </div>
+                    <div class="self-care-item">
+                        <h4>5-4-3-2-1 Grounding</h4>
+                        <p>Name 5 things you see, 4 you hear, 3 you feel, 2 you smell, 1 you taste.</p>
+                    </div>
+                    <div class="self-care-item">
+                        <h4>Ice or Heat</h4>
+                        <p>Apply an ice pack or heating pad to the painful area. Even holding ice can help distract from emotional pain.</p>
+                    </div>
+                    <div class="self-care-item">
+                        <h4>Change Position</h4>
+                        <p>If possible, gently change your position. Lie down, sit up, or find a more comfortable arrangement.</p>
+                    </div>
+                    <div class="self-care-item">
+                        <h4>Reach Out</h4>
+                        <p>Text a friend, family member, or call a helpline. You don't have to face this moment alone.</p>
+                    </div>
+                    <div class="self-care-item">
+                        <h4>Gentle Movement</h4>
+                        <p>If safe, try gentle stretching or walking to another room. Small movements can shift your focus.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- International Resources -->
+            <div class="international-note">
+                <h3>Outside the United States?</h3>
+                <p>
+                    The resources above are primarily US-based. For international crisis support, visit
+                    <a href="https://findahelpline.com/" target="_blank" rel="noopener">Find A Helpline</a>
+                    to locate mental health support in your country, or
+                    <a href="https://www.iasp.info/resources/Crisis_Centres/" target="_blank" rel="noopener">IASP Crisis Centres</a>
+                    for international suicide prevention resources.
+                </p>
+            </div>
+
+            <!-- Back to Resources Link -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="resources.html" class="btn btn-outline">
+                    Back to Resources
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon" aria-hidden="true">&#10084;</span>
+                        ChronicSoreness
+                    </a>
+                    <p>Empowering women with chronic pain through evidence-based information and compassionate support.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="conditions.html">Conditions</a></li>
+                        <li><a href="treatments.html">Treatments</a></li>
+                        <li><a href="lifestyle.html">Lifestyle</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="symptom-checker.html">Symptom Checker</a></li>
+                        <li><a href="symptom-diary.html">Symptom Diary</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#privacy">Privacy Policy</a></li>
+                        <li><a href="about.html#disclaimer">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChronicSoreness. For informational purposes only. Not medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
