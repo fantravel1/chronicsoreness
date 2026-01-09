@@ -6,7 +6,7 @@ A comprehensive, mobile-first, SEO/AEO-optimized megasite providing evidence-bas
 
 ## Live Site
 
-Visit: **https://fantravel1.github.io/chronicsoreness/**
+Visit: **https://chronicsoreness.com/**
 
 ## Features
 

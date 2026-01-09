@@ -1,11 +1,11 @@
 # Robots.txt for ChronicSoreness
-# https://fantravel1.github.io/chronicsoreness/
+# https://chronicsoreness.com/
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://fantravel1.github.io/chronicsoreness/sitemap.xml
+Sitemap: https://chronicsoreness.com/sitemap.xml
 
 # Disallow any admin or private areas (none currently)
 # Disallow: /admin/
