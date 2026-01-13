@@ -378,7 +378,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: calc(var(--header-height) + var(--space-xl)) var(--space-md) var(--space-xl);
+    padding: calc(var(--header-height) + var(--space-3xl)) var(--space-md) var(--space-2xl);
     background: var(--gradient-hero);
     overflow: hidden;
 }
@@ -1113,7 +1113,7 @@ section h2 {
     .hero {
         flex-direction: row;
         align-items: center;
-        padding: var(--header-height) var(--space-xl);
+        padding: calc(var(--header-height) + var(--space-2xl)) var(--space-xl) var(--space-2xl);
         min-height: 100vh;
     }
 
@@ -1815,15 +1815,30 @@ textarea:focus {
     gap: var(--space-xs);
     font-size: var(--font-size-sm);
     color: var(--color-text-light);
-    padding: var(--space-xs) var(--space-sm);
-    background: var(--color-bg-alt);
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--space-md);
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-full);
+    margin-top: var(--space-md);
+    font-weight: 500;
+    box-shadow: var(--shadow-sm);
 }
 
 .reading-time::before {
-    content: "\\23F1";
-    font-size: 1rem;
+    content: "\\1F552";
+    font-size: 0.875rem;
+}
+
+/* Reading time in page header (for content pages) */
+.page-header .reading-time {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none;
+}
+
+.page-header .reading-time::before {
+    opacity: 0.9;
 }
 
 .article-meta {
